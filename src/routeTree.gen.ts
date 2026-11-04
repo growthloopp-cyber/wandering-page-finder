@@ -36,6 +36,7 @@ import { Route as SiteTermsRouteImport } from './routes/_site.terms'
 import { Route as SiteToolsRouteImport } from './routes/_site.tools'
 import { Route as SiteTrustRouteImport } from './routes/_site.trust'
 import { Route as SiteVerifyPayoutRouteImport } from './routes/_site.verify-payout'
+import { Route as SiteVirtualTradingRouteImport } from './routes/_site.virtual-trading'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminBlogsRouteImport } from './routes/admin.blogs'
 import { Route as AdminCertificatesRouteImport } from './routes/admin.certificates'
@@ -196,6 +197,11 @@ const SiteVerifyPayoutRoute = SiteVerifyPayoutRouteImport.update({
   path: '/verify-payout',
   getParentRoute: () => SiteRoute,
 } as any)
+const SiteVirtualTradingRoute = SiteVirtualTradingRouteImport.update({
+  id: '/virtual-trading',
+  path: '/virtual-trading',
+  getParentRoute: () => SiteRoute,
+} as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -349,6 +355,7 @@ export interface FileRoutesByFullPath {
   '/tools': typeof SiteToolsRoute
   '/trust': typeof SiteTrustRoute
   '/verify-payout': typeof SiteVerifyPayoutRoute
+  '/virtual-trading': typeof SiteVirtualTradingRoute
   '/admin/blogs': typeof AdminBlogsRoute
   '/admin/certificates': typeof AdminCertificatesRoute
   '/admin/coupons': typeof AdminCouponsRoute
@@ -399,6 +406,7 @@ export interface FileRoutesByTo {
   '/tools': typeof SiteToolsRoute
   '/trust': typeof SiteTrustRoute
   '/verify-payout': typeof SiteVerifyPayoutRoute
+  '/virtual-trading': typeof SiteVirtualTradingRoute
   '/admin/blogs': typeof AdminBlogsRoute
   '/admin/certificates': typeof AdminCertificatesRoute
   '/admin/coupons': typeof AdminCouponsRoute
@@ -454,6 +462,7 @@ export interface FileRoutesById {
   '/_site/tools': typeof SiteToolsRoute
   '/_site/trust': typeof SiteTrustRoute
   '/_site/verify-payout': typeof SiteVerifyPayoutRoute
+  '/_site/virtual-trading': typeof SiteVirtualTradingRoute
   '/admin/blogs': typeof AdminBlogsRoute
   '/admin/certificates': typeof AdminCertificatesRoute
   '/admin/coupons': typeof AdminCouponsRoute
@@ -510,6 +519,7 @@ export interface FileRouteTypes {
     | '/tools'
     | '/trust'
     | '/verify-payout'
+    | '/virtual-trading'
     | '/admin/blogs'
     | '/admin/certificates'
     | '/admin/coupons'
@@ -560,6 +570,7 @@ export interface FileRouteTypes {
     | '/tools'
     | '/trust'
     | '/verify-payout'
+    | '/virtual-trading'
     | '/admin/blogs'
     | '/admin/certificates'
     | '/admin/coupons'
@@ -614,6 +625,7 @@ export interface FileRouteTypes {
     | '/_site/tools'
     | '/_site/trust'
     | '/_site/verify-payout'
+    | '/_site/virtual-trading'
     | '/admin/blogs'
     | '/admin/certificates'
     | '/admin/coupons'
@@ -840,6 +852,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SiteVerifyPayoutRouteImport
       parentRoute: typeof SiteRoute
     }
+    '/_site/virtual-trading': {
+      id: '/_site/virtual-trading'
+      path: '/virtual-trading'
+      fullPath: '/virtual-trading'
+      preLoaderRoute: typeof SiteVirtualTradingRouteImport
+      parentRoute: typeof SiteRoute
+    }
     '/admin/': {
       id: '/admin/'
       path: '/'
@@ -1042,6 +1061,7 @@ interface SiteRouteChildren {
   SiteToolsRoute: typeof SiteToolsRoute
   SiteTrustRoute: typeof SiteTrustRoute
   SiteVerifyPayoutRoute: typeof SiteVerifyPayoutRoute
+  SiteVirtualTradingRoute: typeof SiteVirtualTradingRoute
   SiteIndexRoute: typeof SiteIndexRoute
   SiteBlogSlugRoute: typeof SiteBlogSlugRoute
   SiteCheckoutSuccessRoute: typeof SiteCheckoutSuccessRoute
@@ -1072,6 +1092,7 @@ const SiteRouteChildren: SiteRouteChildren = {
   SiteToolsRoute: SiteToolsRoute,
   SiteTrustRoute: SiteTrustRoute,
   SiteVerifyPayoutRoute: SiteVerifyPayoutRoute,
+  SiteVirtualTradingRoute: SiteVirtualTradingRoute,
   SiteIndexRoute: SiteIndexRoute,
   SiteBlogSlugRoute: SiteBlogSlugRoute,
   SiteCheckoutSuccessRoute: SiteCheckoutSuccessRoute,
