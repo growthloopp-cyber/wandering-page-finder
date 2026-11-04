@@ -19,6 +19,11 @@ export function getReviewMedia(value: string): ReviewMedia | null {
   } catch { return null; }
 }
 
+/** 11-char YouTube id from a normalized embed URL (output of getReviewMedia). */
+export function youtubeId(embedUrl: string): string | null {
+  return embedUrl.match(/embed\/([\w-]{11})/)?.[1] ?? null;
+}
+
 export function safeReviewImage(value: string): string | undefined {
   try { const url = new URL(value); return url.protocol === "https:" ? url.href : undefined; }
   catch { return undefined; }
