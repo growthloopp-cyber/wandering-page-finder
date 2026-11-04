@@ -57,7 +57,7 @@ export function PlatformPreview() {
       <div className="container-xl platform-preview">
         <div>
           <div className="home-eyebrow">Trading platform</div>
-          <h2 id="platform-heading" className="font-display">Your evaluation, on one clean screen</h2>
+          <h2 id="platform-heading" className="font-display text-3xl md:text-5xl leading-tight mt-3">Your evaluation, on one clean screen</h2>
           <p className="text-[var(--muted)] mt-4 max-w-md">Watchlist, orders, positions and live rule tracking — built for NIFTY, BANK NIFTY and permitted instruments.</p>
           <ul className="platform-points">
             <li><LineChart size={17} /> Candlestick charts with timeframe controls</li>
