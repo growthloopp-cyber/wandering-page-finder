@@ -56,7 +56,37 @@ export const DEFAULT_SETTINGS = {
       { n: "03", t: "Get Paid", d: "Trade independently and take home 70% of the profits — payouts processed within 24 hours to your bank." },
     ],
   },
-  home_sections: { plans: true, payouts: true, reviews: true, steps: true, benefits: true, calculator: true, community: true, blogs: true, faq: true, support: true },
+  home_sections: { plans: true, payouts: true, trust: true, reviews: true, steps: true, benefits: true, calculator: true, community: true, blogs: true, faq: true, support: true },
+  // Trust & Transparency — every value is managed by the admin (Site Settings → Trust).
+  // Placeholders below must be replaced with the real company details.
+  trust: {
+    enabled: true,
+    heading: "Trust & Transparency",
+    subtitle: "Real numbers, registered company details and verifiable payouts.",
+    stats: [
+      { label: "Total Amount Paid", value: "₹0" },
+      { label: "Successful Payouts", value: "0" },
+      { label: "Active Users", value: "0" },
+      { label: "Total Traders", value: "0" },
+    ],
+    company: {
+      legal_name: "BRVS Education Pvt Ltd",
+      gst: "GSTIN — to be added",
+      cin: "CIN — to be added",
+      pan: "PAN — to be added",
+      tan: "TAN — to be added",
+      address: "Unique Square, Causeway, Katargam, Surat, Gujarat, India",
+      phone: "+91 78019 20564",
+      email: "support@indifunded.com",
+      instagram: "https://www.instagram.com/indifunded",
+      telegram: "",
+    },
+    documents: [],
+    support_team: [],
+    payout_proofs: [],
+    credentials: [],
+    stories: [],
+  },
   video_reviews: { enabled: true, heading: "The people behind the payouts", subtitle: "Trading journeys, in their own words.", items: [] },
   testimonials: [
     { q: "Passing the challenge isn't easy, but it's worth it. You learn so much about yourself as a trader. IndiFunded truly pushes you to the next level.", a: "Rahul Chouhan", r: "Standard Challenge Trader" },
