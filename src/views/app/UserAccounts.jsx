@@ -1,3 +1,4 @@
+import { SampleAccounts } from "./TraderScreens";
 import { useEffect, useState } from "react";
 import { Link } from "@/lib/router-compat";
 import { api, formatINR } from "../../lib/api";
@@ -58,6 +59,7 @@ export default function UserAccounts() {
           <Link to="/challenges" className="btn-amber rounded-full px-6 py-3 text-sm mt-6 inline-flex items-center gap-2">Browse accounts <ArrowRight size={14}/></Link>
         </div>
       )}
+      <SampleAccounts />
     </div>
   );
 }

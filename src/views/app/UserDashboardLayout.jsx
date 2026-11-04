@@ -1,17 +1,32 @@
 import { NavLink, Navigate, Outlet, useNavigate, Link, useLocation } from "@/lib/router-compat";
 import Showcase3D from "../../components/Showcase3D";
 import { useAuth } from "../../context/AuthContext";
-import { LayoutDashboard, Wallet, Award, Settings as SettingsIcon, Briefcase, LogOut, Menu, X, ShieldCheck, Sparkles } from "lucide-react";
+import { LayoutDashboard, Wallet, Award, Settings as SettingsIcon, Briefcase, LogOut, Menu, X, ShieldCheck, Sparkles, CandlestickChart, BookOpen, Layers, ListOrdered, Target, ShieldAlert, CalendarDays, BadgeCheck, IdCard, Bell, LifeBuoy } from "lucide-react";
 import { useState } from "react";
 import BrandLogo from "../../components/BrandLogo";
 
 const links = [
-  { to: "/app", label: "Dashboard", icon: <LayoutDashboard size={16}/>, end: true },
-  { to: "/app/accounts", label: "Accounts", icon: <Briefcase size={16}/> },
+  { group: "Trading" },
+  { to: "/app", label: "Overview", icon: <LayoutDashboard size={16}/>, end: true, id: "dashboard" },
+  { to: "/app/accounts", label: "My Accounts", icon: <Briefcase size={16}/>, id: "accounts" },
+  { to: "/app/terminal", label: "Trading Terminal", icon: <CandlestickChart size={16}/> },
+  { to: "/app/tradebook", label: "Trade Book", icon: <BookOpen size={16}/> },
+  { to: "/app/positions", label: "Positions", icon: <Layers size={16}/> },
+  { to: "/app/orders", label: "Orders", icon: <ListOrdered size={16}/> },
+  { group: "Performance" },
+  { to: "/app/evaluation", label: "Evaluation Progress", icon: <Target size={16}/> },
+  { to: "/app/risk", label: "Risk Management", icon: <ShieldAlert size={16}/> },
+  { to: "/app/calendar", label: "Trading Calendar", icon: <CalendarDays size={16}/> },
   { to: "/app/insights", label: "AI Insights", icon: <Sparkles size={16}/> },
-  { to: "/app/payouts", label: "Payouts", icon: <Wallet size={16}/> },
+  { group: "Funding" },
+  { to: "/app/funded", label: "Funded Account", icon: <BadgeCheck size={16}/> },
+  { to: "/app/kyc", label: "KYC", icon: <IdCard size={16}/> },
   { to: "/app/certificates", label: "Certificates", icon: <Award size={16}/> },
-  { to: "/app/settings", label: "Settings", icon: <SettingsIcon size={16}/> },
+  { to: "/app/payouts", label: "Payouts", icon: <Wallet size={16}/> },
+  { group: "Account" },
+  { to: "/app/notifications", label: "Notifications", icon: <Bell size={16}/> },
+  { to: "/app/support", label: "Support", icon: <LifeBuoy size={16}/> },
+  { to: "/app/settings", label: "Profile Settings", icon: <SettingsIcon size={16}/>, id: "settings" },
 ];
 
 export default function UserDashboardLayout() {
@@ -42,11 +57,11 @@ export default function UserDashboardLayout() {
           <BrandLogo size="md"/>
         </Link>
 
-        <nav className="mt-8 md:mt-10 flex flex-col gap-1">
-          {links.map(l => (
+        <nav className="mt-8 md:mt-10 flex flex-col gap-0.5">
+          {links.map((l, i) => l.group ? <div key={`g${i}`} className="dash-nav-group">{l.group}</div> : (
             <NavLink key={l.to} to={l.to} end={l.end} onClick={()=>setOpen(false)}
               className={({isActive}) => `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm ${isActive ? "bg-[var(--accent)] text-white" : "text-[var(--muted)] hover:bg-[var(--surface)] hover:text-white"}`}
-              data-testid={`dash-nav-${l.label.toLowerCase()}`}>
+              data-testid={`dash-nav-${l.id || l.label.toLowerCase().replace(/[^a-z]+/g, "-")}`}>
               {l.icon}{l.label}
             </NavLink>
           ))}

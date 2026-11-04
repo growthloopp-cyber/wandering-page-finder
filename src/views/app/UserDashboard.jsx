@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "@/lib/router-compat";
 import { useAuth } from "../../context/AuthContext";
 import { api, formatINR } from "../../lib/api";
+import { OverviewSample } from "./TraderScreens";
 import { Wallet, Briefcase, TrendingUp, Coins, ArrowRight, Rocket } from "lucide-react";
 
 export default function UserDashboard() {
@@ -69,6 +70,7 @@ export default function UserDashboard() {
           </div>
         )}
       </div>
+      <OverviewSample />
     </div>
   );
 }
