@@ -1,4 +1,5 @@
-import { NavLink, Navigate, Outlet, useNavigate, Link } from "@/lib/router-compat";
+import { NavLink, Navigate, Outlet, useNavigate, Link, useLocation } from "@/lib/router-compat";
+import Showcase3D from "../../components/Showcase3D";
 import { useAuth } from "../../context/AuthContext";
 import { LayoutDashboard, Wallet, Award, Settings as SettingsIcon, Briefcase, LogOut, Menu, X, ShieldCheck, Sparkles } from "lucide-react";
 import { useState } from "react";
@@ -14,6 +15,7 @@ const links = [
 ];
 
 export default function UserDashboardLayout() {
+  const loc3d = useLocation();
   const { user, loading, logout } = useAuth();
   const nav = useNavigate();
   const [open, setOpen] = useState(false);
@@ -71,7 +73,7 @@ export default function UserDashboardLayout() {
         </button>
       </aside>
 
-      <main className="p-5 md:p-8 lg:p-12 max-w-6xl w-full min-w-0"><Outlet/></main>
+      <main className="p-5 md:p-8 lg:p-12 max-w-6xl w-full min-w-0 has-showcase has-showcase--panel"><Showcase3D path={loc3d.pathname} /><div className="showcase-content"><Outlet/></div></main>
     </div>
   );
 }

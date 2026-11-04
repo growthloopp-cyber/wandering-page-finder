@@ -5,6 +5,7 @@ import ScrollProgress from "./ScrollProgress";
 import StickyCTA from "./StickyCTA";
 import WhatsAppMenu from "./WhatsAppMenu";
 import PageBg3D from "./PageBg3D";
+import Showcase3D from "./Showcase3D";
 import { Outlet, useLocation } from "@/lib/router-compat";
 import { useSettings } from "../context/SettingsContext";
 
@@ -18,7 +19,7 @@ export default function Layout() {
       {w.scroll_progress?.enabled !== false && <ScrollProgress />}
       <AnnouncementBar />
       <Header />
-      <main key={loc.pathname} className="flex-1 page-transition"><Outlet /></main>
+      <main key={loc.pathname} className="flex-1 page-transition has-showcase"><Showcase3D path={loc.pathname} /><div className="showcase-content"><Outlet /></div></main>
       <Footer />
       <StickyCTA />
       <WhatsAppMenu />
