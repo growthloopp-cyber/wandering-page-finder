@@ -6,6 +6,9 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import HowItWorksSection from "../components/HowItWorks";
 import { ShieldCheck, Search, CheckCircle2, XCircle, ArrowRight, Building2, Users, Wallet, Award, Star } from "lucide-react";
+import { QRCodeSVG } from "qrcode.react";
+import { TrustStats, CompanyDetails, PayoutProofs, SuccessStories } from "../components/TrustSection";
+import { findPayoutProof, findCredential, formatAmount } from "../lib/trust";
 
 const Shell = ({ chip, title, sub, children }) => (
   <div className="container-xl pt-12 md:pt-16 pb-16 md:pb-24">
@@ -30,60 +33,47 @@ export function HowItWorksPage() {
 
 export function TrustCenter() {
   const { settings } = useSettings();
-  const c = settings.contact || {}, b = settings.brand || {};
-  const [stats, setStats] = useState(null);
-  useEffect(() => { api.get("/public/stats").then((r) => setStats(r.data)).catch(() => setStats({})); }, []);
-  const cards = [
-    { i: <Users/>, t: "Registered traders", v: stats?.traders },
-    { i: <Wallet/>, t: "Verified payouts", v: stats?.payouts },
-    { i: <Award/>, t: "Payout certificates", v: stats?.certificates },
-  ];
+  const t = settings.trust || {};
   return (
-    <Shell chip="Trust Center" title="Transparency you can check" sub="Company details and live platform numbers, taken straight from our records.">
-      <div className="grid sm:grid-cols-3 gap-4">
-        {cards.map((x) => (
-          <div key={x.t} className="glass-card p-6">
-            <div className="text-[var(--accent)]">{x.i}</div>
-            <div className="font-display text-4xl mt-4">{stats ? (x.v ?? 0) : "…"}</div>
-            <div className="text-sm text-[var(--muted)] mt-1">{x.t}</div>
-          </div>
-        ))}
-      </div>
-      <div className="glass-card p-6 md:p-8 mt-6 space-y-2 text-sm">
-        <div className="flex items-center gap-2 font-display text-xl mb-3"><Building2 size={18}/> Company</div>
-        <div><span className="text-[var(--muted)]">Name:</span> {c.company || b.name}</div>
-        <div><span className="text-[var(--muted)]">Address:</span> {c.address}</div>
-        <div><span className="text-[var(--muted)]">Email:</span> {c.email}</div>
-        <div><span className="text-[var(--muted)]">Phone:</span> {c.phone}</div>
-      </div>
-      <div className="flex flex-wrap gap-3 mt-6 text-sm">
+    <Shell chip="Trust Center" title={t.heading || "Trust & Transparency"} sub={t.subtitle}>
+      <TrustStats stats={t.stats} />
+      <div className="mt-8"><CompanyDetails company={t.company} documents={t.documents} team={t.support_team} /></div>
+      <div className="flex flex-wrap gap-3 mt-8 text-sm">
         <Link to="/verify-payout" className="btn-amber rounded-full px-5 py-2.5 inline-flex items-center gap-2"><ShieldCheck size={16}/> Verify a payout</Link>
         <Link to="/payouts" className="rounded-full px-5 py-2.5 border border-[var(--border-hi)]">Payout records</Link>
       </div>
+      {(t.payout_proofs || []).length > 0 && <><h2 className="font-display text-3xl mt-14 mb-6">Payout proofs</h2><PayoutProofs proofs={t.payout_proofs} /></>}
+      {(t.stories || []).length > 0 && <><h2 className="font-display text-3xl mt-14 mb-6">Trader success stories</h2><SuccessStories stories={t.stories} /></>}
     </Shell>
   );
 }
 
 export function VerifyPayout() {
+  const { settings } = useSettings();
   const [q, setQ] = useState("");
   const [res, setRes] = useState(undefined);
+  const [proof, setProof] = useState(null);
   const [busy, setBusy] = useState(false);
   const go = async (e) => {
     e.preventDefault();
     if (!q.trim()) return;
     setBusy(true);
+    const hit = findPayoutProof(settings.trust?.payout_proofs, q);
+    setProof(hit);
     try { const r = await api.get("/public/verify-payout", { params: { q: q.trim() } }); setRes(r.data); }
-    catch { setRes(null); }
+    catch { setRes([]); }
     finally { setBusy(false); }
   };
+  const nothing = res !== undefined && !proof && !(res && res.length);
   return (
-    <Shell chip="Verification" title="Verify a payout" sub="Enter a certificate ID or trader name to confirm a payout is genuine.">
+    <Shell chip="Verification" title="Verify a payout" sub="Enter a Payout ID (or certificate ID / trader name) to confirm a payout is genuine.">
       <form onSubmit={go} className="flex gap-2 max-w-xl">
-        <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Certificate ID or trader name" maxLength={100}
+        <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Payout ID e.g. PO-1001" maxLength={100} aria-label="Payout ID"
           className="flex-1 rounded-full bg-transparent border border-[var(--border-hi)] px-5 py-3 text-sm" />
         <button disabled={busy} className="btn-amber rounded-full px-5 py-3 inline-flex items-center gap-2"><Search size={16}/> Check</button>
       </form>
-      {res === null && <div className="glass-card p-5 mt-6 flex gap-2 items-center max-w-xl"><XCircle className="text-red-400"/> No verified payout found.</div>}
+      {nothing && <div className="glass-card p-5 mt-6 flex gap-2 items-center max-w-xl"><XCircle className="text-[var(--rose)]"/> No verified payout found for this ID.</div>}
+      {proof && <div className="mt-6 max-w-xl"><PayoutProofs proofs={[proof]} /></div>}
       {res && res.length > 0 && (
         <div className="grid sm:grid-cols-2 gap-4 mt-6">
           {res.map((c) => (
@@ -100,40 +90,26 @@ export function VerifyPayout() {
   );
 }
 
-const POLICIES = {
-  privacy: { title: "Privacy Policy", body: [
-    ["What we collect", "Your name, email, phone, payment references and trading account activity, so we can run your challenge and pay you."],
-    ["How we use it", "To create accounts, verify payments and payouts, prevent fraud and contact you about your account. We never sell your data."],
-    ["Storage and security", "Data is stored on secure servers with restricted access. Payment card details are handled by our payment partner, not by us."],
-    ["Your rights", "You can ask us to view, correct or delete your data by writing to our support email."],
-  ]},
-  terms: { title: "Terms and Conditions", body: [
-    ["Eligibility", "You must be 18 or older and give accurate details to buy a challenge."],
-    ["Simulated evaluation", "Challenges are evaluations. Passing them qualifies you for a funded account under a profit-share agreement."],
-    ["Rules", "Breaking daily loss, overall loss or other published rules ends the challenge. Abuse, copy trading and exploits lead to disqualification."],
-    ["Payouts", "Profit shares are paid after verification and KYC, under the payout schedule shown on the site."],
-  ]},
-  refund: { title: "Refund Policy", body: [
-    ["Challenge fees", "Fees are non-refundable once the trading account has been issued."],
-    ["Before activation", "If your account has not been issued yet, contact support within 24 hours of payment for a refund review."],
-    ["Duplicate payments", "Duplicate or failed-but-charged payments are refunded to the original method after verification."],
-  ]},
-  risk: { title: "Risk Disclosure", body: [
-    ["Trading risk", "Trading in financial markets carries a high level of risk and may not suit everyone. Past results do not guarantee future results."],
-    ["No investment advice", "Nothing on this site is financial advice. Tools and content are for education only."],
-    ["Your responsibility", "Only trade with money you can afford to lose, and make your own decisions."],
-  ]},
-};
-
-export function PolicyPage({ kind }) {
-  const p = POLICIES[kind];
+export function CredentialVerify({ code }) {
+  const { settings, loading } = useSettings();
+  const c = findCredential(settings.trust?.credentials, code);
+  const url = typeof window !== "undefined" ? `${window.location.origin}/verify/${encodeURIComponent(code)}` : "";
   return (
-    <Shell chip="Legal" title={p.title}>
-      <div className="max-w-3xl space-y-6">
-        {p.body.map(([h, t]) => (
-          <div key={h}><h2 className="font-display text-xl">{h}</h2><p className="text-[var(--muted)] mt-2 leading-relaxed">{t}</p></div>
-        ))}
-      </div>
+    <Shell chip="Certificate verification" title={c ? "This credential is genuine" : loading ? "Checking…" : "Credential not found"}
+      sub={c ? "Issued and verified by IndiFunded." : loading ? "" : "This code doesn't match any certificate or award issued by IndiFunded."}>
+      {c ? (
+        <div className="glass-card p-6 md:p-8 max-w-2xl grid sm:grid-cols-[1fr_auto] gap-6 items-center">
+          <div className="space-y-2 text-sm">
+            <div className="flex items-center gap-2 text-[var(--emerald)]"><CheckCircle2 size={18}/> Verified {c.type || "certificate"}</div>
+            <div className="font-display text-3xl">{c.trader_name}</div>
+            <div className="text-[var(--muted)]">{c.title}</div>
+            {c.amount && <div><span className="text-[var(--muted)]">Amount:</span> {formatAmount(c.amount)}</div>}
+            {c.issued_date && <div><span className="text-[var(--muted)]">Issued:</span> {c.issued_date}</div>}
+            <div className="font-mono text-xs text-[var(--muted-2)]">Code: {c.code}</div>
+          </div>
+          {url && <div className="trust-qr"><QRCodeSVG value={url} size={132} /></div>}
+        </div>
+      ) : !loading && <div className="glass-card p-5 flex gap-2 items-center max-w-xl"><XCircle className="text-[var(--rose)]"/> Not verified</div>}
     </Shell>
   );
 }
