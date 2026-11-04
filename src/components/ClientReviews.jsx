@@ -49,10 +49,10 @@ function StatTile() {
   );
 }
 
-export default function ClientReviews() {
+export default function ClientReviews({ quotesOnly = false }) {
   const { settings } = useSettings();
   const cfg = settings.video_reviews || {};
-  const videos = (cfg.items || []).filter(item => item.enabled !== false && getReviewMedia(item.url || ""));
+  const videos = quotesOnly ? [] : (cfg.items || []).filter(item => item.enabled !== false && getReviewMedia(item.url || ""));
   const reviews = settings.testimonials || [];
   const [active, setActive] = useState(null);
   const [failed, setFailed] = useState(false);
