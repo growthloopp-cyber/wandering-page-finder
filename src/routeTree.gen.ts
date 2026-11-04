@@ -55,10 +55,21 @@ import { Route as AdminWeeklyPayoutsRouteImport } from './routes/admin.weekly-pa
 import { Route as ApiSplatRouteImport } from './routes/api/$'
 import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AppAccountsRouteImport } from './routes/app.accounts'
+import { Route as AppCalendarRouteImport } from './routes/app.calendar'
 import { Route as AppCertificatesRouteImport } from './routes/app.certificates'
+import { Route as AppEvaluationRouteImport } from './routes/app.evaluation'
+import { Route as AppFundedRouteImport } from './routes/app.funded'
 import { Route as AppInsightsRouteImport } from './routes/app.insights'
+import { Route as AppKycRouteImport } from './routes/app.kyc'
+import { Route as AppNotificationsRouteImport } from './routes/app.notifications'
+import { Route as AppOrdersRouteImport } from './routes/app.orders'
 import { Route as AppPayoutsRouteImport } from './routes/app.payouts'
+import { Route as AppPositionsRouteImport } from './routes/app.positions'
+import { Route as AppRiskRouteImport } from './routes/app.risk'
 import { Route as AppSettingsRouteImport } from './routes/app.settings'
+import { Route as AppSupportRouteImport } from './routes/app.support'
+import { Route as AppTerminalRouteImport } from './routes/app.terminal'
+import { Route as AppTradebookRouteImport } from './routes/app.tradebook'
 import { Route as SiteBlogIndexRouteImport } from './routes/_site.blog.index'
 import { Route as SiteBlogSlugRouteImport } from './routes/_site.blog.$slug'
 import { Route as SiteCheckoutSuccessRouteImport } from './routes/_site.checkout.success'
@@ -293,9 +304,24 @@ const AppAccountsRoute = AppAccountsRouteImport.update({
   path: '/accounts',
   getParentRoute: () => AppRoute,
 } as any)
+const AppCalendarRoute = AppCalendarRouteImport.update({
+  id: '/calendar',
+  path: '/calendar',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppCertificatesRoute = AppCertificatesRouteImport.update({
   id: '/certificates',
   path: '/certificates',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppEvaluationRoute = AppEvaluationRouteImport.update({
+  id: '/evaluation',
+  path: '/evaluation',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppFundedRoute = AppFundedRouteImport.update({
+  id: '/funded',
+  path: '/funded',
   getParentRoute: () => AppRoute,
 } as any)
 const AppInsightsRoute = AppInsightsRouteImport.update({
@@ -303,14 +329,54 @@ const AppInsightsRoute = AppInsightsRouteImport.update({
   path: '/insights',
   getParentRoute: () => AppRoute,
 } as any)
+const AppKycRoute = AppKycRouteImport.update({
+  id: '/kyc',
+  path: '/kyc',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppNotificationsRoute = AppNotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppOrdersRoute = AppOrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppPayoutsRoute = AppPayoutsRouteImport.update({
   id: '/payouts',
   path: '/payouts',
   getParentRoute: () => AppRoute,
 } as any)
+const AppPositionsRoute = AppPositionsRouteImport.update({
+  id: '/positions',
+  path: '/positions',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppRiskRoute = AppRiskRouteImport.update({
+  id: '/risk',
+  path: '/risk',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppSettingsRoute = AppSettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSupportRoute = AppSupportRouteImport.update({
+  id: '/support',
+  path: '/support',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppTerminalRoute = AppTerminalRouteImport.update({
+  id: '/terminal',
+  path: '/terminal',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppTradebookRoute = AppTradebookRouteImport.update({
+  id: '/tradebook',
+  path: '/tradebook',
   getParentRoute: () => AppRoute,
 } as any)
 const SiteBlogIndexRoute = SiteBlogIndexRouteImport.update({
@@ -378,10 +444,21 @@ export interface FileRoutesByFullPath {
   '/admin/weekly-payouts': typeof AdminWeeklyPayoutsRoute
   '/api/$': typeof ApiSplatRoute
   '/app/accounts': typeof AppAccountsRoute
+  '/app/calendar': typeof AppCalendarRoute
   '/app/certificates': typeof AppCertificatesRoute
+  '/app/evaluation': typeof AppEvaluationRoute
+  '/app/funded': typeof AppFundedRoute
   '/app/insights': typeof AppInsightsRoute
+  '/app/kyc': typeof AppKycRoute
+  '/app/notifications': typeof AppNotificationsRoute
+  '/app/orders': typeof AppOrdersRoute
   '/app/payouts': typeof AppPayoutsRoute
+  '/app/positions': typeof AppPositionsRoute
+  '/app/risk': typeof AppRiskRoute
   '/app/settings': typeof AppSettingsRoute
+  '/app/support': typeof AppSupportRoute
+  '/app/terminal': typeof AppTerminalRoute
+  '/app/tradebook': typeof AppTradebookRoute
   '/admin/': typeof AdminIndexRoute
   '/app/': typeof AppIndexRoute
   '/blog/$slug': typeof SiteBlogSlugRoute
@@ -430,10 +507,21 @@ export interface FileRoutesByTo {
   '/admin/weekly-payouts': typeof AdminWeeklyPayoutsRoute
   '/api/$': typeof ApiSplatRoute
   '/app/accounts': typeof AppAccountsRoute
+  '/app/calendar': typeof AppCalendarRoute
   '/app/certificates': typeof AppCertificatesRoute
+  '/app/evaluation': typeof AppEvaluationRoute
+  '/app/funded': typeof AppFundedRoute
   '/app/insights': typeof AppInsightsRoute
+  '/app/kyc': typeof AppKycRoute
+  '/app/notifications': typeof AppNotificationsRoute
+  '/app/orders': typeof AppOrdersRoute
   '/app/payouts': typeof AppPayoutsRoute
+  '/app/positions': typeof AppPositionsRoute
+  '/app/risk': typeof AppRiskRoute
   '/app/settings': typeof AppSettingsRoute
+  '/app/support': typeof AppSupportRoute
+  '/app/terminal': typeof AppTerminalRoute
+  '/app/tradebook': typeof AppTradebookRoute
   '/': typeof SiteIndexRoute
   '/admin': typeof AdminIndexRoute
   '/app': typeof AppIndexRoute
@@ -487,10 +575,21 @@ export interface FileRoutesById {
   '/admin/weekly-payouts': typeof AdminWeeklyPayoutsRoute
   '/api/$': typeof ApiSplatRoute
   '/app/accounts': typeof AppAccountsRoute
+  '/app/calendar': typeof AppCalendarRoute
   '/app/certificates': typeof AppCertificatesRoute
+  '/app/evaluation': typeof AppEvaluationRoute
+  '/app/funded': typeof AppFundedRoute
   '/app/insights': typeof AppInsightsRoute
+  '/app/kyc': typeof AppKycRoute
+  '/app/notifications': typeof AppNotificationsRoute
+  '/app/orders': typeof AppOrdersRoute
   '/app/payouts': typeof AppPayoutsRoute
+  '/app/positions': typeof AppPositionsRoute
+  '/app/risk': typeof AppRiskRoute
   '/app/settings': typeof AppSettingsRoute
+  '/app/support': typeof AppSupportRoute
+  '/app/terminal': typeof AppTerminalRoute
+  '/app/tradebook': typeof AppTradebookRoute
   '/_site/': typeof SiteIndexRoute
   '/admin/': typeof AdminIndexRoute
   '/app/': typeof AppIndexRoute
@@ -545,10 +644,21 @@ export interface FileRouteTypes {
     | '/admin/weekly-payouts'
     | '/api/$'
     | '/app/accounts'
+    | '/app/calendar'
     | '/app/certificates'
+    | '/app/evaluation'
+    | '/app/funded'
     | '/app/insights'
+    | '/app/kyc'
+    | '/app/notifications'
+    | '/app/orders'
     | '/app/payouts'
+    | '/app/positions'
+    | '/app/risk'
     | '/app/settings'
+    | '/app/support'
+    | '/app/terminal'
+    | '/app/tradebook'
     | '/admin/'
     | '/app/'
     | '/blog/$slug'
@@ -597,10 +707,21 @@ export interface FileRouteTypes {
     | '/admin/weekly-payouts'
     | '/api/$'
     | '/app/accounts'
+    | '/app/calendar'
     | '/app/certificates'
+    | '/app/evaluation'
+    | '/app/funded'
     | '/app/insights'
+    | '/app/kyc'
+    | '/app/notifications'
+    | '/app/orders'
     | '/app/payouts'
+    | '/app/positions'
+    | '/app/risk'
     | '/app/settings'
+    | '/app/support'
+    | '/app/terminal'
+    | '/app/tradebook'
     | '/'
     | '/admin'
     | '/app'
@@ -653,10 +774,21 @@ export interface FileRouteTypes {
     | '/admin/weekly-payouts'
     | '/api/$'
     | '/app/accounts'
+    | '/app/calendar'
     | '/app/certificates'
+    | '/app/evaluation'
+    | '/app/funded'
     | '/app/insights'
+    | '/app/kyc'
+    | '/app/notifications'
+    | '/app/orders'
     | '/app/payouts'
+    | '/app/positions'
+    | '/app/risk'
     | '/app/settings'
+    | '/app/support'
+    | '/app/terminal'
+    | '/app/tradebook'
     | '/_site/'
     | '/admin/'
     | '/app/'
@@ -997,11 +1129,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppAccountsRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/calendar': {
+      id: '/app/calendar'
+      path: '/calendar'
+      fullPath: '/app/calendar'
+      preLoaderRoute: typeof AppCalendarRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/certificates': {
       id: '/app/certificates'
       path: '/certificates'
       fullPath: '/app/certificates'
       preLoaderRoute: typeof AppCertificatesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/evaluation': {
+      id: '/app/evaluation'
+      path: '/evaluation'
+      fullPath: '/app/evaluation'
+      preLoaderRoute: typeof AppEvaluationRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/funded': {
+      id: '/app/funded'
+      path: '/funded'
+      fullPath: '/app/funded'
+      preLoaderRoute: typeof AppFundedRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/insights': {
@@ -1011,6 +1164,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppInsightsRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/kyc': {
+      id: '/app/kyc'
+      path: '/kyc'
+      fullPath: '/app/kyc'
+      preLoaderRoute: typeof AppKycRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/notifications': {
+      id: '/app/notifications'
+      path: '/notifications'
+      fullPath: '/app/notifications'
+      preLoaderRoute: typeof AppNotificationsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/orders': {
+      id: '/app/orders'
+      path: '/orders'
+      fullPath: '/app/orders'
+      preLoaderRoute: typeof AppOrdersRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/payouts': {
       id: '/app/payouts'
       path: '/payouts'
@@ -1018,11 +1192,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppPayoutsRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/positions': {
+      id: '/app/positions'
+      path: '/positions'
+      fullPath: '/app/positions'
+      preLoaderRoute: typeof AppPositionsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/risk': {
+      id: '/app/risk'
+      path: '/risk'
+      fullPath: '/app/risk'
+      preLoaderRoute: typeof AppRiskRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/settings': {
       id: '/app/settings'
       path: '/settings'
       fullPath: '/app/settings'
       preLoaderRoute: typeof AppSettingsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/support': {
+      id: '/app/support'
+      path: '/support'
+      fullPath: '/app/support'
+      preLoaderRoute: typeof AppSupportRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/terminal': {
+      id: '/app/terminal'
+      path: '/terminal'
+      fullPath: '/app/terminal'
+      preLoaderRoute: typeof AppTerminalRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/tradebook': {
+      id: '/app/tradebook'
+      path: '/tradebook'
+      fullPath: '/app/tradebook'
+      preLoaderRoute: typeof AppTradebookRouteImport
       parentRoute: typeof AppRoute
     }
     '/_site/blog/': {
@@ -1162,19 +1371,41 @@ const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
 interface AppRouteChildren {
   AppAccountsRoute: typeof AppAccountsRoute
+  AppCalendarRoute: typeof AppCalendarRoute
   AppCertificatesRoute: typeof AppCertificatesRoute
+  AppEvaluationRoute: typeof AppEvaluationRoute
+  AppFundedRoute: typeof AppFundedRoute
   AppInsightsRoute: typeof AppInsightsRoute
+  AppKycRoute: typeof AppKycRoute
+  AppNotificationsRoute: typeof AppNotificationsRoute
+  AppOrdersRoute: typeof AppOrdersRoute
   AppPayoutsRoute: typeof AppPayoutsRoute
+  AppPositionsRoute: typeof AppPositionsRoute
+  AppRiskRoute: typeof AppRiskRoute
   AppSettingsRoute: typeof AppSettingsRoute
+  AppSupportRoute: typeof AppSupportRoute
+  AppTerminalRoute: typeof AppTerminalRoute
+  AppTradebookRoute: typeof AppTradebookRoute
   AppIndexRoute: typeof AppIndexRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
   AppAccountsRoute: AppAccountsRoute,
+  AppCalendarRoute: AppCalendarRoute,
   AppCertificatesRoute: AppCertificatesRoute,
+  AppEvaluationRoute: AppEvaluationRoute,
+  AppFundedRoute: AppFundedRoute,
   AppInsightsRoute: AppInsightsRoute,
+  AppKycRoute: AppKycRoute,
+  AppNotificationsRoute: AppNotificationsRoute,
+  AppOrdersRoute: AppOrdersRoute,
   AppPayoutsRoute: AppPayoutsRoute,
+  AppPositionsRoute: AppPositionsRoute,
+  AppRiskRoute: AppRiskRoute,
   AppSettingsRoute: AppSettingsRoute,
+  AppSupportRoute: AppSupportRoute,
+  AppTerminalRoute: AppTerminalRoute,
+  AppTradebookRoute: AppTradebookRoute,
   AppIndexRoute: AppIndexRoute,
 }
 
