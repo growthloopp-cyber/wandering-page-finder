@@ -3,10 +3,15 @@
 - [x] Original green theme kept; Trader Stories with admin approval
 - [x] FundedNext-inspired complete homepage refresh (keep original green, logo and IndiFunded offerings)
 - [x] Admin-managed auto-scrolling video reviews and homepage section controls
-- [ ] Real client video content (blocked: owner needs to add permissioned video links in Admin → Site Settings → Review Videos)
-- [ ] Public: Support Center, per-challenge detail pages
-- [ ] Challenge automation: account ID/credentials, email delivery, progress + pass/fail evaluation
-- [ ] Trader dashboard: terminal, trade book, positions, risk management
-- [ ] KYC submission + admin KYC review, funded account activation, broker selection
+- [x] Project moved into this workspace on Lovable Cloud
+- [x] "Our Traders" video cards (FTMO-style horizontal auto-scroll) replace certificates on home + /our-traders page
+- [x] Platform page like indifunded.com/virtual-trading (/virtual-trading)
+- [x] AI performance insights from pasted/uploaded trading history (trader dashboard)
+- [ ] Admin account admin@indifunded.com (blocked: chosen password rejected by leaked-password check; owner must pick a stronger one)
+- [ ] Real "Our Traders" videos (blocked: owner will send links; add in Admin → Site Settings → Review Videos)
+- [ ] Public: Compare Plans page, Platform Demo, Support Center, per-challenge detail pages
+- [ ] Trader: evaluation progress, trading terminal, positions, tradebook, KYC flow, fund account
+- [ ] Admin: KYC review, CRM, CMS, reports, audit logs, trading data
+- [ ] Extra FundedNext-inspired sections
+- [ ] Records + users import (blocked: owner exports old data)
 - [ ] Payments: Razorpay (blocked: user keys)
-- [ ] Payout management extensions

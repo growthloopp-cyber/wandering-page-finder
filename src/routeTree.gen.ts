@@ -22,6 +22,7 @@ import { Route as SiteHowItWorksRouteImport } from './routes/_site.how-it-works'
 import { Route as SiteLeaderboardRouteImport } from './routes/_site.leaderboard'
 import { Route as SiteLeagueRouteImport } from './routes/_site.league'
 import { Route as SiteLoginRouteImport } from './routes/_site.login'
+import { Route as SiteOurTradersRouteImport } from './routes/_site.our-traders'
 import { Route as SitePayoutRequestRouteImport } from './routes/_site.payout-request'
 import { Route as SitePayoutsRouteImport } from './routes/_site.payouts'
 import { Route as SitePrivacyRouteImport } from './routes/_site.privacy'
@@ -35,6 +36,7 @@ import { Route as SiteTermsRouteImport } from './routes/_site.terms'
 import { Route as SiteToolsRouteImport } from './routes/_site.tools'
 import { Route as SiteTrustRouteImport } from './routes/_site.trust'
 import { Route as SiteVerifyPayoutRouteImport } from './routes/_site.verify-payout'
+import { Route as SiteVirtualTradingRouteImport } from './routes/_site.virtual-trading'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminBlogsRouteImport } from './routes/admin.blogs'
 import { Route as AdminCertificatesRouteImport } from './routes/admin.certificates'
@@ -54,6 +56,7 @@ import { Route as ApiSplatRouteImport } from './routes/api/$'
 import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AppAccountsRouteImport } from './routes/app.accounts'
 import { Route as AppCertificatesRouteImport } from './routes/app.certificates'
+import { Route as AppInsightsRouteImport } from './routes/app.insights'
 import { Route as AppPayoutsRouteImport } from './routes/app.payouts'
 import { Route as AppSettingsRouteImport } from './routes/app.settings'
 import { Route as SiteBlogIndexRouteImport } from './routes/_site.blog.index'
@@ -124,6 +127,11 @@ const SiteLoginRoute = SiteLoginRouteImport.update({
   path: '/login',
   getParentRoute: () => SiteRoute,
 } as any)
+const SiteOurTradersRoute = SiteOurTradersRouteImport.update({
+  id: '/our-traders',
+  path: '/our-traders',
+  getParentRoute: () => SiteRoute,
+} as any)
 const SitePayoutRequestRoute = SitePayoutRequestRouteImport.update({
   id: '/payout-request',
   path: '/payout-request',
@@ -187,6 +195,11 @@ const SiteTrustRoute = SiteTrustRouteImport.update({
 const SiteVerifyPayoutRoute = SiteVerifyPayoutRouteImport.update({
   id: '/verify-payout',
   path: '/verify-payout',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SiteVirtualTradingRoute = SiteVirtualTradingRouteImport.update({
+  id: '/virtual-trading',
+  path: '/virtual-trading',
   getParentRoute: () => SiteRoute,
 } as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
@@ -284,6 +297,11 @@ const AppCertificatesRoute = AppCertificatesRouteImport.update({
   path: '/certificates',
   getParentRoute: () => AppRoute,
 } as any)
+const AppInsightsRoute = AppInsightsRouteImport.update({
+  id: '/insights',
+  path: '/insights',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppPayoutsRoute = AppPayoutsRouteImport.update({
   id: '/payouts',
   path: '/payouts',
@@ -323,6 +341,7 @@ export interface FileRoutesByFullPath {
   '/leaderboard': typeof SiteLeaderboardRoute
   '/league': typeof SiteLeagueRoute
   '/login': typeof SiteLoginRoute
+  '/our-traders': typeof SiteOurTradersRoute
   '/payout-request': typeof SitePayoutRequestRoute
   '/payouts': typeof SitePayoutsRoute
   '/privacy': typeof SitePrivacyRoute
@@ -336,6 +355,7 @@ export interface FileRoutesByFullPath {
   '/tools': typeof SiteToolsRoute
   '/trust': typeof SiteTrustRoute
   '/verify-payout': typeof SiteVerifyPayoutRoute
+  '/virtual-trading': typeof SiteVirtualTradingRoute
   '/admin/blogs': typeof AdminBlogsRoute
   '/admin/certificates': typeof AdminCertificatesRoute
   '/admin/coupons': typeof AdminCouponsRoute
@@ -353,6 +373,7 @@ export interface FileRoutesByFullPath {
   '/api/$': typeof ApiSplatRoute
   '/app/accounts': typeof AppAccountsRoute
   '/app/certificates': typeof AppCertificatesRoute
+  '/app/insights': typeof AppInsightsRoute
   '/app/payouts': typeof AppPayoutsRoute
   '/app/settings': typeof AppSettingsRoute
   '/admin/': typeof AdminIndexRoute
@@ -371,6 +392,7 @@ export interface FileRoutesByTo {
   '/leaderboard': typeof SiteLeaderboardRoute
   '/league': typeof SiteLeagueRoute
   '/login': typeof SiteLoginRoute
+  '/our-traders': typeof SiteOurTradersRoute
   '/payout-request': typeof SitePayoutRequestRoute
   '/payouts': typeof SitePayoutsRoute
   '/privacy': typeof SitePrivacyRoute
@@ -384,6 +406,7 @@ export interface FileRoutesByTo {
   '/tools': typeof SiteToolsRoute
   '/trust': typeof SiteTrustRoute
   '/verify-payout': typeof SiteVerifyPayoutRoute
+  '/virtual-trading': typeof SiteVirtualTradingRoute
   '/admin/blogs': typeof AdminBlogsRoute
   '/admin/certificates': typeof AdminCertificatesRoute
   '/admin/coupons': typeof AdminCouponsRoute
@@ -401,6 +424,7 @@ export interface FileRoutesByTo {
   '/api/$': typeof ApiSplatRoute
   '/app/accounts': typeof AppAccountsRoute
   '/app/certificates': typeof AppCertificatesRoute
+  '/app/insights': typeof AppInsightsRoute
   '/app/payouts': typeof AppPayoutsRoute
   '/app/settings': typeof AppSettingsRoute
   '/': typeof SiteIndexRoute
@@ -424,6 +448,7 @@ export interface FileRoutesById {
   '/_site/leaderboard': typeof SiteLeaderboardRoute
   '/_site/league': typeof SiteLeagueRoute
   '/_site/login': typeof SiteLoginRoute
+  '/_site/our-traders': typeof SiteOurTradersRoute
   '/_site/payout-request': typeof SitePayoutRequestRoute
   '/_site/payouts': typeof SitePayoutsRoute
   '/_site/privacy': typeof SitePrivacyRoute
@@ -437,6 +462,7 @@ export interface FileRoutesById {
   '/_site/tools': typeof SiteToolsRoute
   '/_site/trust': typeof SiteTrustRoute
   '/_site/verify-payout': typeof SiteVerifyPayoutRoute
+  '/_site/virtual-trading': typeof SiteVirtualTradingRoute
   '/admin/blogs': typeof AdminBlogsRoute
   '/admin/certificates': typeof AdminCertificatesRoute
   '/admin/coupons': typeof AdminCouponsRoute
@@ -454,6 +480,7 @@ export interface FileRoutesById {
   '/api/$': typeof ApiSplatRoute
   '/app/accounts': typeof AppAccountsRoute
   '/app/certificates': typeof AppCertificatesRoute
+  '/app/insights': typeof AppInsightsRoute
   '/app/payouts': typeof AppPayoutsRoute
   '/app/settings': typeof AppSettingsRoute
   '/_site/': typeof SiteIndexRoute
@@ -478,6 +505,7 @@ export interface FileRouteTypes {
     | '/leaderboard'
     | '/league'
     | '/login'
+    | '/our-traders'
     | '/payout-request'
     | '/payouts'
     | '/privacy'
@@ -491,6 +519,7 @@ export interface FileRouteTypes {
     | '/tools'
     | '/trust'
     | '/verify-payout'
+    | '/virtual-trading'
     | '/admin/blogs'
     | '/admin/certificates'
     | '/admin/coupons'
@@ -508,6 +537,7 @@ export interface FileRouteTypes {
     | '/api/$'
     | '/app/accounts'
     | '/app/certificates'
+    | '/app/insights'
     | '/app/payouts'
     | '/app/settings'
     | '/admin/'
@@ -526,6 +556,7 @@ export interface FileRouteTypes {
     | '/leaderboard'
     | '/league'
     | '/login'
+    | '/our-traders'
     | '/payout-request'
     | '/payouts'
     | '/privacy'
@@ -539,6 +570,7 @@ export interface FileRouteTypes {
     | '/tools'
     | '/trust'
     | '/verify-payout'
+    | '/virtual-trading'
     | '/admin/blogs'
     | '/admin/certificates'
     | '/admin/coupons'
@@ -556,6 +588,7 @@ export interface FileRouteTypes {
     | '/api/$'
     | '/app/accounts'
     | '/app/certificates'
+    | '/app/insights'
     | '/app/payouts'
     | '/app/settings'
     | '/'
@@ -578,6 +611,7 @@ export interface FileRouteTypes {
     | '/_site/leaderboard'
     | '/_site/league'
     | '/_site/login'
+    | '/_site/our-traders'
     | '/_site/payout-request'
     | '/_site/payouts'
     | '/_site/privacy'
@@ -591,6 +625,7 @@ export interface FileRouteTypes {
     | '/_site/tools'
     | '/_site/trust'
     | '/_site/verify-payout'
+    | '/_site/virtual-trading'
     | '/admin/blogs'
     | '/admin/certificates'
     | '/admin/coupons'
@@ -608,6 +643,7 @@ export interface FileRouteTypes {
     | '/api/$'
     | '/app/accounts'
     | '/app/certificates'
+    | '/app/insights'
     | '/app/payouts'
     | '/app/settings'
     | '/_site/'
@@ -718,6 +754,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SiteLoginRouteImport
       parentRoute: typeof SiteRoute
     }
+    '/_site/our-traders': {
+      id: '/_site/our-traders'
+      path: '/our-traders'
+      fullPath: '/our-traders'
+      preLoaderRoute: typeof SiteOurTradersRouteImport
+      parentRoute: typeof SiteRoute
+    }
     '/_site/payout-request': {
       id: '/_site/payout-request'
       path: '/payout-request'
@@ -807,6 +850,13 @@ declare module '@tanstack/react-router' {
       path: '/verify-payout'
       fullPath: '/verify-payout'
       preLoaderRoute: typeof SiteVerifyPayoutRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/virtual-trading': {
+      id: '/_site/virtual-trading'
+      path: '/virtual-trading'
+      fullPath: '/virtual-trading'
+      preLoaderRoute: typeof SiteVirtualTradingRouteImport
       parentRoute: typeof SiteRoute
     }
     '/admin/': {
@@ -942,6 +992,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppCertificatesRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/insights': {
+      id: '/app/insights'
+      path: '/insights'
+      fullPath: '/app/insights'
+      preLoaderRoute: typeof AppInsightsRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/payouts': {
       id: '/app/payouts'
       path: '/payouts'
@@ -990,6 +1047,7 @@ interface SiteRouteChildren {
   SiteLeaderboardRoute: typeof SiteLeaderboardRoute
   SiteLeagueRoute: typeof SiteLeagueRoute
   SiteLoginRoute: typeof SiteLoginRoute
+  SiteOurTradersRoute: typeof SiteOurTradersRoute
   SitePayoutRequestRoute: typeof SitePayoutRequestRoute
   SitePayoutsRoute: typeof SitePayoutsRoute
   SitePrivacyRoute: typeof SitePrivacyRoute
@@ -1003,6 +1061,7 @@ interface SiteRouteChildren {
   SiteToolsRoute: typeof SiteToolsRoute
   SiteTrustRoute: typeof SiteTrustRoute
   SiteVerifyPayoutRoute: typeof SiteVerifyPayoutRoute
+  SiteVirtualTradingRoute: typeof SiteVirtualTradingRoute
   SiteIndexRoute: typeof SiteIndexRoute
   SiteBlogSlugRoute: typeof SiteBlogSlugRoute
   SiteCheckoutSuccessRoute: typeof SiteCheckoutSuccessRoute
@@ -1019,6 +1078,7 @@ const SiteRouteChildren: SiteRouteChildren = {
   SiteLeaderboardRoute: SiteLeaderboardRoute,
   SiteLeagueRoute: SiteLeagueRoute,
   SiteLoginRoute: SiteLoginRoute,
+  SiteOurTradersRoute: SiteOurTradersRoute,
   SitePayoutRequestRoute: SitePayoutRequestRoute,
   SitePayoutsRoute: SitePayoutsRoute,
   SitePrivacyRoute: SitePrivacyRoute,
@@ -1032,6 +1092,7 @@ const SiteRouteChildren: SiteRouteChildren = {
   SiteToolsRoute: SiteToolsRoute,
   SiteTrustRoute: SiteTrustRoute,
   SiteVerifyPayoutRoute: SiteVerifyPayoutRoute,
+  SiteVirtualTradingRoute: SiteVirtualTradingRoute,
   SiteIndexRoute: SiteIndexRoute,
   SiteBlogSlugRoute: SiteBlogSlugRoute,
   SiteCheckoutSuccessRoute: SiteCheckoutSuccessRoute,
@@ -1081,6 +1142,7 @@ const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 interface AppRouteChildren {
   AppAccountsRoute: typeof AppAccountsRoute
   AppCertificatesRoute: typeof AppCertificatesRoute
+  AppInsightsRoute: typeof AppInsightsRoute
   AppPayoutsRoute: typeof AppPayoutsRoute
   AppSettingsRoute: typeof AppSettingsRoute
   AppIndexRoute: typeof AppIndexRoute
@@ -1089,6 +1151,7 @@ interface AppRouteChildren {
 const AppRouteChildren: AppRouteChildren = {
   AppAccountsRoute: AppAccountsRoute,
   AppCertificatesRoute: AppCertificatesRoute,
+  AppInsightsRoute: AppInsightsRoute,
   AppPayoutsRoute: AppPayoutsRoute,
   AppSettingsRoute: AppSettingsRoute,
   AppIndexRoute: AppIndexRoute,

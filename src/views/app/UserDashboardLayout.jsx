@@ -1,12 +1,13 @@
 import { NavLink, Navigate, Outlet, useNavigate, Link } from "@/lib/router-compat";
 import { useAuth } from "../../context/AuthContext";
-import { LayoutDashboard, Wallet, Award, Settings as SettingsIcon, Briefcase, LogOut, Menu, X, ShieldCheck } from "lucide-react";
+import { LayoutDashboard, Wallet, Award, Settings as SettingsIcon, Briefcase, LogOut, Menu, X, ShieldCheck, Sparkles } from "lucide-react";
 import { useState } from "react";
 import BrandLogo from "../../components/BrandLogo";
 
 const links = [
   { to: "/app", label: "Dashboard", icon: <LayoutDashboard size={16}/>, end: true },
   { to: "/app/accounts", label: "Accounts", icon: <Briefcase size={16}/> },
+  { to: "/app/insights", label: "AI Insights", icon: <Sparkles size={16}/> },
   { to: "/app/payouts", label: "Payouts", icon: <Wallet size={16}/> },
   { to: "/app/certificates", label: "Certificates", icon: <Award size={16}/> },
   { to: "/app/settings", label: "Settings", icon: <SettingsIcon size={16}/> },

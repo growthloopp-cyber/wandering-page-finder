@@ -6,7 +6,7 @@ import { useAuth } from "../context/AuthContext";
 import { Button } from "../components/ui/button";
 import ChallengePicker from "../components/ChallengePicker";
 import ClientReviews from "../components/ClientReviews";
-import PayoutCertificates from "../components/PayoutCertificates";
+import OurTraders from "../components/OurTraders";
 import WeeklyHighestPayout from "../components/WeeklyHighestPayout";
 import ProfitCalculator from "../components/ProfitCalculator";
 import { HeroFX, Ticker } from "../components/HeroFX";
@@ -53,8 +53,8 @@ export default function Home() {
       </div></section>
       <ChallengePicker plans={plans} href={href} />
     </>}
-    {show("payouts") && <div className="home-proof-band"><PayoutCertificates /><WeeklyHighestPayout /></div>}
-    {show("reviews") && <ClientReviews />}
+    {show("payouts") && <div className="home-proof-band"><OurTraders /><WeeklyHighestPayout /></div>}
+    {show("reviews") && <ClientReviews quotesOnly />}
     <ScrollStatement text="Traders return to a system that is clear, fair, and built for Indian markets." />
     {show("steps") && <section data-reveal className="home-band"><div className="container-xl">
       <div className="home-section-heading"><div><div className="home-eyebrow">How it works</div><h2 className="font-display">{settings.steps.title_prefix}<br />{settings.steps.title_suffix}</h2><p>Choose your account. Read the rules. Make your next move.</p></div><Button asChild variant="outline"><Link to="/how-it-works">The full journey <ArrowRight /></Link></Button></div>

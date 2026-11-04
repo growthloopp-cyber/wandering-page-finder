@@ -920,3 +920,116 @@ input, textarea, select { color-scheme: dark; }
 .wall-stat > svg:first-child { color: var(--home-green); }
 .wall-stat svg[viewBox] { width: 100%; height: 60px; margin: 14px 0; } .wall-stat path { fill: none; stroke: var(--home-green); stroke-width: 2.5; stroke-dasharray: 400; animation: draw 4s ease infinite alternate; }
 .wall-stat strong { display: block; font-size: 44px; line-height: 1; } .wall-stat span { color: var(--home-muted); font-size: 13px; }
+
+/* ===== Our Traders: horizontal auto-scrolling video cards ===== */
+.trader-marquee-wrap { overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.trader-marquee { display: flex; gap: 20px; width: max-content; padding: 4px 0; animation: cert-scroll 60s linear infinite; }
+.trader-marquee-wrap:hover .trader-marquee, .trader-marquee-wrap:focus-within .trader-marquee { animation-play-state: paused; }
+.trader-card { width: 300px; flex-shrink: 0; background: var(--home-panel); border: 1px solid var(--home-line); border-radius: 18px; overflow: hidden; transition: border-color .2s, transform .2s; }
+.trader-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+.trader-card-media { position: relative; display: block; width: 100%; aspect-ratio: 16/10; background: var(--surface); overflow: hidden; cursor: pointer; border: 0; padding: 0; }
+.trader-card-media img, .trader-card-media video { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+.trader-card:hover .trader-card-media img { transform: scale(1.04); }
+.trader-card-fallback { display: grid; place-items: center; width: 100%; height: 100%; color: var(--muted-2); }
+.trader-card-source { position: absolute; top: 12px; left: 12px; display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; color: var(--text); background: var(--home-overlay); backdrop-filter: blur(8px); padding: 5px 10px; border-radius: 8px; }
+.trader-card-source svg { color: hsl(var(--destructive)); }
+.trader-card-play { position: absolute; inset: 0; margin: auto; width: 52px; height: 52px; display: grid; place-items: center; border-radius: 999px; color: var(--text); background: color-mix(in srgb, var(--text) 22%, transparent); backdrop-filter: blur(6px); transition: background .2s, transform .2s; }
+.trader-card-media:hover .trader-card-play { background: var(--accent); transform: scale(1.08); }
+.trader-card-body { padding: 18px 20px 20px; }
+.trader-card-body h3 { font-size: 20px; font-weight: 600; }
+.trader-card-body > p { color: var(--home-muted); font-size: 13px; margin-top: 2px; }
+.trader-card-body dl { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--home-line); }
+.trader-card-body dt { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; color: var(--muted-2); }
+.trader-card-body dd { font-family: var(--font-display, inherit); font-size: 17px; font-weight: 600; margin-top: 4px; }
+@media (prefers-reduced-motion: reduce) { .trader-marquee { animation: none; } .trader-marquee-wrap { overflow-x: auto; } }
+
+/* ===== AI insights ===== */
+.insight-score { position: relative; width: 88px; height: 88px; flex-shrink: 0; }
+.insight-score svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.insight-score circle { fill: none; stroke-width: 7; }
+.insight-score-track { stroke: var(--border); }
+.insight-score-fill { stroke: var(--accent); stroke-linecap: round; transition: stroke-dashoffset .8s ease; }
+.insight-score strong { position: absolute; inset: 0; display: grid; place-items: center; font-size: 26px; }
+.insight-metric { border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; }
+.insight-metric span { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted-2); }
+.insight-metric strong { display: block; font-size: 18px; margin-top: 4px; }
+.insight-list { border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px; }
+.insight-list h3 { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; }
+.insight-list ul { margin-top: 10px; display: grid; gap: 8px; font-size: 13px; color: var(--muted); list-style: disc; padding-left: 18px; }
+.insight-good h3 { color: var(--accent); }
+.insight-warn h3 { color: var(--amber, #f59e0b); }
+.insight-risk { border-color: color-mix(in srgb, hsl(var(--destructive)) 40%, var(--border)); }
+.insight-risk h3 { color: hsl(var(--destructive)); }
+.insight-steps { display: grid; gap: 10px; }
+.insight-steps li { display: flex; gap: 14px; border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
+.insight-steps li > span { width: 26px; height: 26px; flex-shrink: 0; display: grid; place-items: center; border-radius: 999px; background: var(--accent); color: var(--text); font-size: 12px; font-weight: 700; }
+.insight-steps strong { font-size: 14px; }
+.insight-steps p { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+/* ===== Virtual trading platform page ===== */
+.vt-muted { color: var(--home-muted); }
+.vt-up { color: var(--accent); }
+.vt-down { color: hsl(var(--destructive)); }
+.vt-hero { text-align: center; padding-top: 96px; padding-bottom: 72px; }
+.vt-hero h1 { font-size: clamp(40px, 7vw, 76px); line-height: 1.04; font-weight: 600; }
+.vt-hero p { color: var(--home-muted); max-width: 640px; margin: 20px auto 0; font-size: 16px; line-height: 1.6; }
+.vt-hero-stats { display: flex; justify-content: center; gap: 48px; margin-top: 48px; flex-wrap: wrap; }
+.vt-hero-stats strong { display: block; font-size: 32px; }
+.vt-hero-stats span { font-size: 12px; color: var(--home-muted); }
+.vt-h2 { font-size: 34px; font-weight: 500; line-height: 1.15; }
+.vt-tour { display: grid; grid-template-columns: 260px 1fr; gap: 20px; }
+.vt-tour-tabs { display: flex; flex-direction: column; gap: 6px; }
+.vt-tour-tabs button { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 12px; border: 1px solid transparent; color: var(--home-muted); text-align: left; font-size: 14px; transition: all .2s; }
+.vt-tour-tabs button:hover { color: var(--text); background: var(--surface); }
+.vt-tour-tabs button.is-active { color: var(--text); background: var(--surface); border-color: var(--accent); }
+.vt-tour-panel { display: grid; grid-template-columns: 1.4fr 1fr; gap: 28px; padding: 28px; align-items: center; }
+.vt-device { border: 1px solid var(--border); border-radius: 16px; background: var(--bg); padding: 18px; min-height: 260px; }
+.vt-device-bar { display: flex; justify-content: space-between; align-items: center; font-size: 13px; font-weight: 600; margin-bottom: 16px; }
+.vt-points { display: grid; gap: 12px; font-size: 14px; }
+.vt-points li { display: flex; align-items: center; gap: 10px; }
+.vt-points svg { color: var(--accent); flex-shrink: 0; }
+.vt-mock-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 10px; }
+.vt-mock-kpis > div { border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; }
+.vt-mock-kpis span { display: block; font-size: 10px; color: var(--muted-2); text-transform: uppercase; letter-spacing: .04em; }
+.vt-mock-kpis strong { display: block; font-size: 15px; margin-top: 3px; }
+.vt-mock-list { display: grid; gap: 2px; font-size: 13px; }
+.vt-mock-list > div { display: grid; grid-template-columns: 1fr 1fr auto; gap: 10px; padding: 10px 4px; border-bottom: 1px solid var(--border); }
+.vt-mock-list > div:last-child { border-bottom: 0; }
+.vt-mock-progress { display: grid; gap: 16px; }
+.vt-bar { height: 6px; border-radius: 99px; background: var(--border); margin-top: 6px; overflow: hidden; }
+.vt-bar i { display: block; height: 100%; background: var(--accent); border-radius: inherit; }
+.vt-spark { width: 100%; height: 70px; margin-top: 14px; }
+.vt-spark path { fill: none; stroke: var(--accent); stroke-width: 2; vector-effect: non-scaling-stroke; }
+.vt-spark-down path { stroke: hsl(var(--destructive)); }
+.vt-btn-buy, .vt-btn-sell { flex: 1; text-align: center; font-size: 12px; font-weight: 700; padding: 9px; border-radius: 9px; }
+.vt-btn-buy { background: var(--accent); color: var(--text); }
+.vt-btn-sell { background: color-mix(in srgb, hsl(var(--destructive)) 80%, transparent); color: var(--text); }
+.vt-dash { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 16px; }
+.vt-eval { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+.vt-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+.vt-steps li { padding: 22px; }
+.vt-steps span { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 999px; background: color-mix(in srgb, var(--accent) 20%, transparent); color: var(--accent); font-size: 16px; }
+.vt-steps p { font-size: 14px; color: var(--home-muted); margin-top: 14px; line-height: 1.55; }
+.vt-brokers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.vt-broker-mark { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 14px; background: var(--surface); border: 1px solid var(--border); color: var(--accent); font-size: 16px; }
+.vt-two { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.vt-risk { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.vt-tracker { display: grid; gap: 12px; font-size: 14px; }
+.vt-tracker li { display: flex; align-items: center; gap: 10px; }
+.vt-tracker svg { color: var(--muted-2); }
+.vt-tracker span { flex: 1; }
+.vt-tracker em { font-style: normal; font-size: 11px; color: var(--muted-2); text-transform: uppercase; letter-spacing: .05em; }
+.vt-managed { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.vt-managed > div { display: flex; align-items: center; gap: 10px; padding: 16px; font-size: 14px; }
+@media (max-width: 1024px) {
+  .vt-eval, .vt-steps { grid-template-columns: repeat(2, 1fr); }
+  .vt-brokers, .vt-managed { grid-template-columns: repeat(2, 1fr); }
+  .vt-dash, .vt-two, .vt-tour-panel { grid-template-columns: 1fr; }
+}
+@media (max-width: 720px) {
+  .vt-tour { grid-template-columns: 1fr; }
+  .vt-tour-tabs { flex-direction: row; overflow-x: auto; }
+  .vt-tour-tabs button { white-space: nowrap; }
+  .vt-eval, .vt-steps, .vt-brokers, .vt-managed, .vt-risk { grid-template-columns: 1fr; }
+  .trader-card { width: 260px; }
+}
