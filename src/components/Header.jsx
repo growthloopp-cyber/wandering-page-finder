@@ -10,6 +10,8 @@ import { Button } from "./ui/button";
 const baseLinks = [
   { to: "/", label: "Home" },
   { to: "/challenges", label: "Challenges" },
+  { to: "/virtual-trading", label: "Platform" },
+  { to: "/our-traders", label: "Our Traders" },
   { to: "/rules", label: "Rules" },
   { to: "/payouts", label: "Payouts" },
   { to: "/leaderboard", label: "Leaderboard" },

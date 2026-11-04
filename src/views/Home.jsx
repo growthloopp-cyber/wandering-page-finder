@@ -6,7 +6,7 @@ import { useAuth } from "../context/AuthContext";
 import { Button } from "../components/ui/button";
 import ChallengePicker from "../components/ChallengePicker";
 import ClientReviews from "../components/ClientReviews";
-import PayoutCertificates from "../components/PayoutCertificates";
+import OurTraders from "../components/OurTraders";
 import WeeklyHighestPayout from "../components/WeeklyHighestPayout";
 import ProfitCalculator from "../components/ProfitCalculator";
 import { HeroFX, Ticker } from "../components/HeroFX";
@@ -53,7 +53,7 @@ export default function Home() {
       </div></section>
       <ChallengePicker plans={plans} href={href} />
     </>}
-    {show("payouts") && <div className="home-proof-band"><PayoutCertificates /><WeeklyHighestPayout /></div>}
+    {show("payouts") && <div className="home-proof-band"><OurTraders /><WeeklyHighestPayout /></div>}
     {show("reviews") && <ClientReviews />}
     <ScrollStatement text="Traders return to a system that is clear, fair, and built for Indian markets." />
     {show("steps") && <section data-reveal className="home-band"><div className="container-xl">
