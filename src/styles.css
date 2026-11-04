@@ -1033,3 +1033,48 @@ input, textarea, select { color-scheme: dark; }
   .vt-eval, .vt-steps, .vt-brokers, .vt-managed, .vt-risk { grid-template-columns: 1fr; }
   .trader-card { width: 260px; }
 }
+
+/* ===== Trust & Transparency ===== */
+.trust-band { position: relative; }
+.trust-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+@media (min-width: 900px) { .trust-stats { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.trust-stat { border: 1px solid var(--border-hi); border-radius: 1.25rem; padding: 1.4rem; background: linear-gradient(160deg, color-mix(in oklab, var(--accent) 16%, transparent), transparent 70%); transition: transform .35s ease, border-color .35s ease; }
+.trust-stat:hover { transform: translateY(-4px); border-color: var(--accent); }
+.trust-stat-icon { color: var(--emerald); }
+.trust-stat-value { font-size: clamp(1.6rem, 4vw, 2.5rem); margin-top: .8rem; }
+.trust-stat-label { color: var(--muted); font-size: .85rem; margin-top: .2rem; }
+.trust-company { display: grid; gap: 1rem; }
+@media (min-width: 900px) { .trust-company { grid-template-columns: 1.3fr 1fr; } }
+.trust-id-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
+.trust-id { border: 1px solid var(--border); border-radius: .9rem; padding: .75rem .9rem; display: flex; flex-direction: column; gap: .2rem; min-width: 0; }
+.trust-id span { font-size: .7rem; letter-spacing: .1em; color: var(--muted-2); font-family: var(--font-mono, monospace); }
+.trust-id strong { font-size: .9rem; font-weight: 500; overflow-wrap: anywhere; }
+.trust-contact-list { display: grid; gap: .65rem; margin-top: 1.4rem; font-size: .9rem; color: var(--muted); }
+.trust-contact-list > * { display: flex; gap: .6rem; align-items: flex-start; }
+.trust-contact-list svg { color: var(--emerald); flex-shrink: 0; margin-top: .15rem; }
+.trust-contact-list a:hover { color: var(--emerald); }
+.trust-docs, .trust-team { display: grid; gap: .6rem; font-size: .9rem; }
+.trust-docs li { display: flex; justify-content: space-between; gap: 1rem; border-bottom: 1px solid var(--border); padding-bottom: .55rem; }
+.trust-docs a { color: var(--emerald); display: inline-flex; align-items: center; gap: .25rem; white-space: nowrap; }
+.trust-docs em { color: var(--muted-2); font-style: normal; font-size: .8rem; }
+.trust-team li { display: flex; gap: .75rem; align-items: center; }
+.trust-team small { display: block; color: var(--muted); font-size: .78rem; }
+.trust-avatar { width: 2.2rem; height: 2.2rem; border-radius: 999px; display: grid; place-items: center; background: var(--accent); font-weight: 600; flex-shrink: 0; }
+.trust-proofs { display: grid; gap: 1rem; }
+@media (min-width: 700px) { .trust-proofs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .trust-proofs { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.trust-proof { border: 1px solid var(--border-hi); border-radius: 1.25rem; padding: 1.3rem; background: var(--bg-1); transition: transform .35s ease, box-shadow .35s ease; }
+.trust-proof:hover { transform: translateY(-3px); box-shadow: 0 18px 40px -24px var(--emerald); }
+.trust-proof-top { display: flex; justify-content: space-between; align-items: center; gap: .5rem; }
+.trust-verified { display: inline-flex; gap: .3rem; align-items: center; font-size: .75rem; color: var(--emerald); }
+.trust-proof-amount { font-size: 2rem; margin: .8rem 0 1rem; }
+.trust-proof-meta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .6rem 1rem; font-size: .82rem; }
+.trust-proof-meta dt { color: var(--muted-2); font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; }
+.trust-proof-meta dd { overflow-wrap: anywhere; }
+.trust-stories { display: grid; gap: 1rem; }
+@media (min-width: 900px) { .trust-stories { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.trust-story blockquote { margin: .9rem 0 1.1rem; color: var(--muted); line-height: 1.6; }
+.trust-story figcaption { display: grid; gap: .15rem; font-size: .85rem; }
+.trust-story figcaption span { color: var(--muted-2); }
+.trust-story figcaption em { font-style: normal; color: var(--emerald); display: inline-flex; gap: .3rem; align-items: center; }
+.trust-qr { background: #fff; padding: .6rem; border-radius: .8rem; width: fit-content; }
