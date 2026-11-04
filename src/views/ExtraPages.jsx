@@ -114,6 +114,44 @@ export function CredentialVerify({ code }) {
   );
 }
 
+const POLICIES = {
+  privacy: { title: "Privacy Policy", body: [
+    ["What we collect", "Your name, email, phone, payment references and trading account activity, so we can run your challenge and pay you."],
+    ["How we use it", "To create accounts, verify payments and payouts, prevent fraud and contact you about your account. We never sell your data."],
+    ["Storage and security", "Data is stored on secure servers with restricted access. Payment card details are handled by our payment partner, not by us."],
+    ["Your rights", "You can ask us to view, correct or delete your data by writing to our support email."],
+  ]},
+  terms: { title: "Terms and Conditions", body: [
+    ["Eligibility", "You must be 18 or older and give accurate details to buy a challenge."],
+    ["Simulated evaluation", "Challenges are evaluations. Passing them qualifies you for a funded account under a profit-share agreement."],
+    ["Rules", "Breaking daily loss, overall loss or other published rules ends the challenge. Abuse, copy trading and exploits lead to disqualification."],
+    ["Payouts", "Profit shares are paid after verification and KYC, under the payout schedule shown on the site."],
+  ]},
+  refund: { title: "Refund Policy", body: [
+    ["Challenge fees", "Fees are non-refundable once the trading account has been issued."],
+    ["Before activation", "If your account has not been issued yet, contact support within 24 hours of payment for a refund review."],
+    ["Duplicate payments", "Duplicate or failed-but-charged payments are refunded to the original method after verification."],
+  ]},
+  risk: { title: "Risk Disclosure", body: [
+    ["Trading risk", "Trading in financial markets carries a high level of risk and may not suit everyone. Past results do not guarantee future results."],
+    ["No investment advice", "Nothing on this site is financial advice. Tools and content are for education only."],
+    ["Your responsibility", "Only trade with money you can afford to lose, and make your own decisions."],
+  ]},
+};
+
+export function PolicyPage({ kind }) {
+  const p = POLICIES[kind];
+  return (
+    <Shell chip="Legal" title={p.title}>
+      <div className="max-w-3xl space-y-6">
+        {p.body.map(([h, t]) => (
+          <div key={h}><h2 className="font-display text-xl">{h}</h2><p className="text-[var(--muted)] mt-2 leading-relaxed">{t}</p></div>
+        ))}
+      </div>
+    </Shell>
+  );
+}
+
 export function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [sent, setSent] = useState(false);
