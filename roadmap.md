@@ -20,3 +20,15 @@
 - [ ] Virtual trading page redesign from reference videos (blocked: owner will send videos)
 - [x] Sign-up: clear error messages, password checklist, auto sign-in after account creation
 - [x] Unique lazy-loaded 3D visual per page type + card hover depth (kept green brand, not purple)
+
+## Full redesign spec (instruction6455, keep green)
+- [x] Homepage: new section order (hero → trust stats → products → comparison → how it works → platform preview → latest payouts → top 10 leaderboard → trader videos & stories → client reviews → why choose → FAQ → CTA → company & transparency)
+- [ ] Product pages: Standard / One-Step / Instant detail pages + Compare page (One-Step & Instant values needed from owner)
+- [ ] How It Works 9-step visual journey
+- [ ] Payouts page redesign: totals, status chips, proof gallery, video player
+- [ ] Reviews page with filters; Trader Stories page with categories
+- [ ] Certificate verification page with ID search + certificate preview cards
+- [ ] Monthly leaderboard page: top 3 podium, previous month, search/filters
+- [ ] Support page; page-specific hero compositions for About, Contact, Rules, FAQ, Blog
+- [ ] Trader dashboard: terminal, trade book, positions, orders, evaluation, risk, calendar, KYC, funded account, notifications, support (demo UI)
+- [ ] Admin: stats dashboard, user/challenge/product/accounts/trading/payment/payout/KYC management screens, reviews & stories management (demo UI)
