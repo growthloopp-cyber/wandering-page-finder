@@ -45,8 +45,13 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     const { error } = await supabase.auth.signInWithPassword({ email: email.trim().toLowerCase(), password });
     if (error) {
+      const msg = /confirm/i.test(error.message)
+        ? "Please confirm your email first — check your inbox."
+        : /invalid/i.test(error.message)
+          ? "Wrong email or password. No account yet? Tap Sign up."
+          : error.message;
       const err = new Error(error.message);
-      err.response = { data: { detail: "Invalid credentials" } };
+      err.response = { data: { detail: msg } };
       throw err;
     }
     const me = await loadMe();

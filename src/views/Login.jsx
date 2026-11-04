@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { toast } from "sonner";
 import { Link, Navigate, useNavigate, useLocation } from "@/lib/router-compat";
@@ -77,7 +77,7 @@ export default function Login() {
                   data-testid="auth-tab-signup">Sign up</button>
         </div>
 
-        <form onSubmit={submit} className="space-y-4">
+        <form method="post" action="#" onSubmit={submit} className="space-y-4">
           {isSignup && (
             <>
               <div>
@@ -104,7 +104,7 @@ export default function Login() {
                    data-testid="auth-password"/>
             {!isSignup && <Link to="/forgot-password" className="text-xs text-[var(--muted)] hover:text-white mt-2 inline-block">Forgot password?</Link>}
           </div>
-          <button disabled={busy} className="btn-amber rounded-full w-full py-3 text-sm inline-flex items-center justify-center gap-2 mt-2" data-testid="auth-submit">
+          <button type="submit" disabled={busy || !ready} className="btn-amber rounded-full w-full py-3 text-sm inline-flex items-center justify-center gap-2 mt-2" data-testid="auth-submit">
             {busy
               ? <><Loader2 className="animate-spin" size={16}/> {isSignup ? "Creating account…" : "Signing in…"}</>
               : (isSignup ? "Create account" : "Sign in")}
