@@ -49,7 +49,7 @@ function StatTile() {
   );
 }
 
-export default function ClientReviews({ quotesOnly = false }) {
+export default function ClientReviews({ quotesOnly = false, heading = "" }) {
   const { settings } = useSettings();
   const cfg = settings.video_reviews || {};
   const videos = quotesOnly ? [] : (cfg.items || []).filter(item => item.enabled !== false && getReviewMedia(item.url || ""));
@@ -83,7 +83,7 @@ export default function ClientReviews({ quotesOnly = false }) {
     <section className="home-band reviews-band" data-testid="client-reviews">
       <div className="container-xl">
         <div className="home-section-heading reviews-heading">
-          <div><div className="home-eyebrow">Trader voices</div><h2 className="font-display">{cfg.heading || "The people behind the payouts"}</h2><p>{cfg.subtitle || "Trading journeys, in their own words."}</p></div>
+          <div><div className="home-eyebrow">Trader voices</div><h2 className="font-display">{heading || cfg.heading || "The people behind the payouts"}</h2><p>{cfg.subtitle || "Trading journeys, in their own words."}</p></div>
         </div>
         <div className="review-wall" data-testid="video-review-track">
           {columns.map((list, c) => {

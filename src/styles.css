@@ -1109,3 +1109,62 @@ input, textarea, select { color-scheme: dark; }
 .auth-checks { display: grid; gap: .3rem; font-size: .78rem; color: var(--muted-2); }
 .auth-checks li { display: flex; gap: .4rem; align-items: center; }
 .auth-checks li.is-ok { color: var(--emerald); }
+
+/* ===== Home: products, platform preview, leaderboard, why ===== */
+.home-stats-band { padding-top: 2.5rem !important; padding-bottom: 1rem !important; }
+.product-grid { display: grid; gap: 1rem; }
+@media (min-width: 900px) { .product-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.product-card { display: flex; flex-direction: column; gap: .75rem; padding: 1.6rem; border-radius: 1.4rem; border: 1px solid var(--border-hi); background: linear-gradient(170deg, color-mix(in oklab, var(--emerald) 7%, var(--bg-1)), var(--bg-1) 60%); animation: rise-in .6s cubic-bezier(.2,.8,.2,1) both; transition: transform .45s cubic-bezier(.2,.8,.2,1), border-color .4s ease, box-shadow .45s ease; }
+.product-card.is-live { border-color: color-mix(in oklab, var(--emerald) 55%, transparent); }
+.product-card:hover { transform: translateY(-6px); box-shadow: 0 30px 60px -36px var(--emerald); }
+.product-card h3 { font-size: 1.6rem; }
+.product-card p { color: var(--muted); font-size: .92rem; }
+.product-card ul { display: grid; gap: .45rem; font-size: .9rem; }
+.product-card li { display: flex; gap: .5rem; align-items: center; }
+.product-card li svg { color: var(--emerald); }
+.product-icon { width: 2.8rem; height: 2.8rem; border-radius: .9rem; display: grid; place-items: center; background: color-mix(in oklab, var(--emerald) 16%, transparent); color: var(--emerald); }
+.product-tag { font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; padding: .3rem .65rem; border-radius: 999px; border: 1px solid var(--border-hi); color: var(--muted); }
+.product-tag.is-live { color: var(--emerald); border-color: color-mix(in oklab, var(--emerald) 50%, transparent); }
+@keyframes rise-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+.home-compare > section { padding-top: 2rem; padding-bottom: 0; }
+.platform-preview { display: grid; gap: 2.5rem; align-items: center; }
+@media (min-width: 900px) { .platform-preview { grid-template-columns: 1fr 1.15fr; } }
+.platform-points { display: grid; gap: .7rem; margin-top: 1.4rem; font-size: .92rem; }
+.platform-points li { display: flex; gap: .6rem; align-items: center; }
+.platform-points svg { color: var(--emerald); }
+.platform-mock { border-radius: 1.4rem; border: 1px solid var(--border-hi); background: var(--bg-1); padding: 1.1rem; box-shadow: 0 40px 80px -50px var(--emerald); transform: perspective(1200px) rotateY(-6deg) rotateX(3deg); transition: transform .6s ease; }
+.platform-mock:hover { transform: perspective(1200px) rotateY(0) rotateX(0); }
+.platform-mock-top { display: flex; justify-content: space-between; font-size: .8rem; color: var(--muted); }
+.platform-mock-top strong { font-weight: 500; font-size: .68rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted-2); }
+.platform-mock-chart { height: 190px; display: flex; align-items: flex-end; gap: 4px; padding: 1.5rem .25rem .5rem; border-bottom: 1px solid var(--border); }
+.platform-mock-chart span { flex: 1; border-radius: 2px; animation: rise-in .5s ease both; }
+.platform-mock-chart .up { background: var(--emerald); }
+.platform-mock-chart .down { background: var(--rose); }
+.platform-mock-panel { display: grid; grid-template-columns: auto auto 1fr; gap: .6rem; align-items: center; margin-top: .9rem; font-size: .75rem; color: var(--muted); }
+.platform-mock-panel button { padding: .45rem 1rem; border-radius: .6rem; font-weight: 600; font-size: .8rem; }
+.platform-mock-panel .buy { background: var(--emerald); color: var(--bg-1); }
+.platform-mock-panel .sell { background: var(--rose); color: var(--bg-1); }
+.platform-mock-panel .bar { height: 6px; border-radius: 9px; background: var(--border); margin-top: .3rem; overflow: hidden; }
+.platform-mock-panel .bar i { display: block; height: 100%; background: var(--emerald); }
+.sample-note { font-size: .78rem; color: var(--muted); border: 1px dashed var(--border-hi); border-radius: .8rem; padding: .6rem .9rem; margin-bottom: 1rem; }
+.board-list { display: grid; gap: .55rem; }
+.board-row { display: grid; grid-template-columns: 2.6rem 1fr auto auto; gap: 1rem; align-items: center; padding: .85rem 1.1rem; border-radius: 1rem; border: 1px solid var(--border); background: var(--bg-1); transition: transform .35s ease, border-color .35s ease; }
+.board-row:hover { transform: translateX(4px); border-color: var(--border-hi); }
+.board-row.is-sample { opacity: .6; }
+.board-rank { width: 2.2rem; height: 2.2rem; border-radius: 999px; display: grid; place-items: center; font-weight: 600; background: var(--border); }
+.board-row.is-top-1 .board-rank { background: var(--gold, #e8b04a); color: var(--bg-1); }
+.board-row.is-top-2 .board-rank { background: #c7d2cc; color: var(--bg-1); }
+.board-row.is-top-3 .board-rank { background: #c98a5a; color: var(--bg-1); }
+.board-row.is-top { border-color: color-mix(in oklab, var(--emerald) 35%, transparent); }
+.board-name small, .board-stat small { display: block; color: var(--muted-2); font-size: .72rem; }
+.board-payout { font-size: 1.15rem; }
+@media (max-width: 600px) { .board-row { grid-template-columns: 2.4rem 1fr auto; } .board-stat { display: none; } }
+.why-grid { display: grid; gap: 1rem; }
+@media (min-width: 700px) { .why-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1100px) { .why-grid { grid-template-columns: repeat(3, 1fr); } }
+.why-item { padding: 1.5rem; border-radius: 1.2rem; border: 1px solid var(--border); background: var(--bg-1); transition: transform .4s ease, border-color .4s ease; }
+.why-item:hover { transform: translateY(-4px); border-color: color-mix(in oklab, var(--emerald) 45%, transparent); }
+.why-item h3 { font-size: 1.2rem; margin-top: 1rem; }
+.why-item p { color: var(--muted); font-size: .9rem; margin-top: .4rem; }
+.why-icon { width: 2.6rem; height: 2.6rem; border-radius: .8rem; display: grid; place-items: center; color: var(--emerald); background: color-mix(in oklab, var(--emerald) 14%, transparent); }
+@media (prefers-reduced-motion: reduce) { .product-card, .platform-mock-chart span { animation: none; } .platform-mock { transform: none; } }
