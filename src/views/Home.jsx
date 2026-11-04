@@ -9,6 +9,7 @@ import ClientReviews from "../components/ClientReviews";
 import OurTraders from "../components/OurTraders";
 import WeeklyHighestPayout from "../components/WeeklyHighestPayout";
 import TrustSection from "../components/TrustSection";
+import Showcase3D from "../components/Showcase3D";
 import ProfitCalculator from "../components/ProfitCalculator";
 import { HeroFX, Ticker } from "../components/HeroFX";
 import { useReveal } from "../lib/useReveal";
@@ -48,7 +49,7 @@ export default function Home() {
     </section>
     <Ticker />
     {show("plans") && <>
-      <section data-reveal className="home-band home-plan-intro"><div className="container-xl">
+      <section data-reveal className="home-band home-plan-intro has-showcase"><Showcase3D variant="home" /><div className="container-xl showcase-content">
         <div className="home-section-heading"><div><div className="home-eyebrow">Built for Indian markets</div><h2 className="font-display">Your next chapter starts here</h2><p>Find the capital that fits your trading journey.</p></div><Button asChild variant="outline"><Link to="/challenges">Explore challenges <ArrowRight /></Link></Button></div>
         <div className="home-plan-grid">{plans.map(plan => <article data-reveal className="home-plan-card" key={plan.id}><div className="flex justify-between items-start"><span className="home-plan-gem" aria-hidden="true"><Target className="home-plan-icon" /></span>{plan.popular && <span className="home-plan-badge">Popular choice</span>}</div><h3 className="font-display">{plan.name}</h3><div className="home-plan-size">{formatINR(plan.account_size)}</div><ul>{(plan.features || []).slice(0, 3).map(feature => <li key={feature}><Check />{feature}</li>)}</ul><Button asChild variant="link" className="px-0"><Link to={href}>From {formatINR(plan.challenge_fee)} <ArrowRight /></Link></Button></article>)}</div>
       </div></section>
