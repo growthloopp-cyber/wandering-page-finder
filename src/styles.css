@@ -1102,9 +1102,7 @@ input, textarea, select { color-scheme: dark; }
 @media (hover: hover) {
   .home-plan-card:hover, .home-feature:hover, .home-step:hover, .home-blog-item:hover, .glass-card:hover { transform: translateY(-5px) perspective(900px) rotateX(1.5deg); box-shadow: 0 26px 50px -30px color-mix(in oklab, var(--emerald) 60%, transparent); }
 }
-.page-transition { animation: page-in .45s cubic-bezier(.2,.8,.2,1) both; }
-@keyframes page-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
-@media (prefers-reduced-motion: reduce) { .page-transition { animation: none; } .showcase-3d { display: none; } }
+@media (prefers-reduced-motion: reduce) { .showcase-3d { display: none; } }
 
 /* ===== Auth form ===== */
 .auth-error { display: flex; gap: .55rem; align-items: flex-start; padding: .8rem 1rem; border-radius: .9rem; font-size: .85rem; line-height: 1.45; color: var(--rose); border: 1px solid color-mix(in oklab, var(--rose) 45%, transparent); background: color-mix(in oklab, var(--rose) 10%, transparent); }
