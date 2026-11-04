@@ -363,6 +363,47 @@ async function route(request, path) {
       history: payouts,
     });
   }
+  // ----- AI performance insights from the trader's own history -----
+  if (is("GET", "/me/insights")) {
+    const user = await currentUser();
+    return json((await db.all("insights")).filter((x) => x.user_id === user.id).sort(byDesc("created_at")).slice(0, 20));
+  }
+  if (is("POST", "/me/insights")) {
+    const user = await currentUser();
+    const b = await body();
+    const { generateTradeInsights, InsightsError, MAX_HISTORY_CHARS } = await import("./insights");
+    const history = str(b.history).trim();
+    const notes = str(b.notes).slice(0, 1000);
+    if (history.length < 20) fail(400, "Please paste or upload your trading history first.");
+    if (history.length > MAX_HISTORY_CHARS) fail(400, `Trading history is too long. Keep it under ${MAX_HISTORY_CHARS.toLocaleString("en-IN")} characters.`);
+    const recent = await myOrders(user.email.toLowerCase());
+    const plan = recent[0]?.plan_id ? await db.get("plans", str(recent[0].plan_id)) : null;
+    let result;
+    try {
+      result = await generateTradeInsights({ history, notes, rules: plan });
+    } catch (e) {
+      if (e instanceof InsightsError) fail(e.status, e.message);
+      throw e;
+    }
+    const doc = {
+      id: uuid(),
+      user_id: user.id,
+      plan_name: plan?.name || null,
+      history_chars: history.length,
+      notes,
+      ...result,
+      created_at: now(),
+    };
+    await db.put("insights", doc);
+    return json(doc);
+  }
+  if ((p = is("DELETE", "/me/insights/:id"))) {
+    const user = await currentUser();
+    const doc = await db.get("insights", p.id);
+    if (!doc || doc.user_id !== user.id) fail(404, "Not found");
+    await db.del("insights", p.id);
+    return json({ ok: true });
+  }
   if (is("GET", "/me/certificates")) {
     const user = await currentUser();
     const email = user.email.toLowerCase();
