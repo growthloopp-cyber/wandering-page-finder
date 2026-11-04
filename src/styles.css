@@ -1087,14 +1087,14 @@ input, textarea, select { color-scheme: dark; }
 .showcase-3d--home { top: 20px; height: 280px; width: min(40vw, 460px); }
 .showcase-3d--default { opacity: 0; }
 .showcase-3d--default.is-ready { opacity: .55; }
-.has-showcase--panel .showcase-3d { width: 300px; height: 260px; top: 0; right: 0; }
+.has-showcase--panel .showcase-3d { width: 220px; height: 150px; top: 10px; right: 230px; }
 .has-showcase--panel .showcase-3d.is-ready { opacity: .55; }
 .showcase-3d--admin.is-ready { opacity: .35 !important; }
 @media (max-width: 900px) {
   .showcase-3d { width: 56vw; height: 240px; }
   .showcase-3d.is-ready { opacity: .32; }
   .showcase-3d--home { top: -10px; }
-  .has-showcase--panel .showcase-3d { width: 180px; height: 170px; }
+  .has-showcase--panel .showcase-3d { display: none; }
 }
 
 /* ===== Premium card hover + depth ===== */
