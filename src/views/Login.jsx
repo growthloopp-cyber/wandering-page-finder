@@ -18,6 +18,9 @@ export default function Login() {
   const [mode, setMode] = useState(initialMode);
   const [form, setForm] = useState({ email: "", password: "", name: "", phone: "" });
   const [busy, setBusy] = useState(false);
+  // Block taps before the page is interactive (otherwise the form does a plain reload and "nothing happens").
+  const [ready, setReady] = useState(false);
+  useEffect(() => { setReady(true); }, []);
   const nav = useNavigate();
 
   if (user) {
