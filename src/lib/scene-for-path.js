@@ -1,7 +1,7 @@
 // Which unique 3D scene each page gets. null = no 3D on that page.
 export function sceneForPath(path = "/") {
   const p = String(path || "/").replace(/\/+$/, "") || "/";
-  if (p === "/") return "home";
+  if (p === "/") return null; // home places its own scene beside the plans
   if (p.startsWith("/admin")) return "admin";
   if (p.startsWith("/app")) return "dashboard";
   if (p.startsWith("/challenges") || p.startsWith("/how-it-works")) return "challenges";

@@ -1082,18 +1082,18 @@ input, textarea, select { color-scheme: dark; }
 /* ===== Per-page 3D showcase (lazy, click-through) ===== */
 .has-showcase { position: relative; isolation: isolate; }
 .showcase-content { position: relative; z-index: 1; }
-.showcase-3d { position: absolute; top: 0; right: 0; width: min(46vw, 560px); height: 440px; z-index: 0; pointer-events: none; opacity: 0; transition: opacity 1.2s ease; }
+.showcase-3d { position: absolute; top: 0; right: -20px; width: min(40vw, 480px); height: 330px; z-index: 0; pointer-events: none; opacity: 0; transition: opacity 1.2s ease; }
 .showcase-3d.is-ready { opacity: .95; }
-.showcase-3d--home { top: 40px; height: 520px; width: min(42vw, 560px); }
+.showcase-3d--home { top: -30px; height: 300px; width: min(40vw, 460px); }
 .showcase-3d--default { opacity: 0; }
 .showcase-3d--default.is-ready { opacity: .55; }
 .has-showcase--panel .showcase-3d { width: 300px; height: 260px; top: 0; right: 0; }
 .has-showcase--panel .showcase-3d.is-ready { opacity: .55; }
 .showcase-3d--admin.is-ready { opacity: .35 !important; }
 @media (max-width: 900px) {
-  .showcase-3d { width: 62vw; height: 300px; }
+  .showcase-3d { width: 56vw; height: 240px; }
   .showcase-3d.is-ready { opacity: .32; }
-  .showcase-3d--home { top: 300px; }
+  .showcase-3d--home { top: -10px; }
   .has-showcase--panel .showcase-3d { width: 180px; height: 170px; }
 }
 
