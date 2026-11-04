@@ -9,7 +9,6 @@ import ClientReviews from "../components/ClientReviews";
 import OurTraders from "../components/OurTraders";
 import WeeklyHighestPayout from "../components/WeeklyHighestPayout";
 import { TrustStats, PayoutProofs, SuccessStories, CompanyDetails } from "../components/TrustSection";
-import ComparePlans from "../components/ComparePlans";
 import { ProductCards, PlatformPreview, MonthlyLeaderboard, WhyChoose } from "../components/HomeSections";
 import Showcase3D from "../components/Showcase3D";
 import ProfitCalculator from "../components/ProfitCalculator";
@@ -58,8 +57,8 @@ export default function Home() {
         <div className="home-plan-grid">{plans.map(plan => <article data-reveal className="home-plan-card" key={plan.id}><div className="flex justify-between items-start"><span className="home-plan-gem" aria-hidden="true"><Target className="home-plan-icon" /></span>{plan.popular && <span className="home-plan-badge">Popular choice</span>}</div><h3 className="font-display">{plan.name}</h3><div className="home-plan-size">{formatINR(plan.account_size)}</div><ul>{(plan.features || []).slice(0, 3).map(feature => <li key={feature}><Check />{feature}</li>)}</ul><Button asChild variant="link" className="px-0"><Link to={href}>From {formatINR(plan.challenge_fee)} <ArrowRight /></Link></Button></article>)}</div>
       </div></section>
       <ChallengePicker plans={plans} href={href} />
-      {plans.length > 0 && <div data-reveal className="home-compare"><ComparePlans plans={plans} /></div>}
     </>}
+    {show("payouts") && <OurTraders showEmpty heading="Trader videos & success stories" />}
     {show("steps") && <section data-reveal className="home-band"><div className="container-xl">
       <div className="home-section-heading"><div><div className="home-eyebrow">How it works</div><h2 className="font-display">{settings.steps.title_prefix}<br />{settings.steps.title_suffix}</h2><p>Choose your account. Read the rules. Make your next move.</p></div><Button asChild variant="outline"><Link to="/how-it-works">The full journey <ArrowRight /></Link></Button></div>
       <div className="home-steps">{(settings.steps.items || []).map((step, i) => { const Icon = [Target, ShieldCheck, Trophy][i] || Target; return <div data-reveal className="home-step" key={i}><div className="home-step-top"><span>STEP {step.n}</span><Icon /></div><h3 className="font-display">{step.t}</h3><p>{step.d}</p></div>; })}</div>
@@ -68,7 +67,6 @@ export default function Home() {
     {show("payouts") && <section className="home-band"><div className="container-xl"><div className="home-section-heading"><div><div className="home-eyebrow">Latest payouts</div><h2 className="font-display">Paid, and verifiable</h2><p>Each published payout can be checked with its Payout ID.</p></div><Button asChild variant="outline"><Link to="/verify-payout">Verify a payout <ArrowRight /></Link></Button></div><PayoutProofs proofs={settings.trust?.payout_proofs} limit={3} /></div></section>}
     {show("payouts") && <div className="home-proof-band"><WeeklyHighestPayout /></div>}
     <MonthlyLeaderboard />
-    {show("payouts") && <OurTraders heading="Trader videos & success stories" />}
     {show("trust") && (settings.trust?.stories || []).some(x => x?.enabled !== false && x?.name) && <section className="home-band"><div className="container-xl"><SuccessStories stories={settings.trust?.stories} limit={3} /></div></section>}
     {show("reviews") && <ClientReviews quotesOnly heading="Real Traders. Real Experiences." />}
     {show("benefits") && <WhyChoose />}

@@ -2,8 +2,8 @@
 export function sceneForPath(path = "/") {
   const p = String(path || "/").replace(/\/+$/, "") || "/";
   if (p === "/") return null; // home places its own scene beside the plans
-  if (p.startsWith("/admin")) return "admin";
-  if (p.startsWith("/app")) return "dashboard";
+  if (p.startsWith("/admin")) return p === "/admin" ? "admin" : null; // data-heavy admin screens stay clean
+  if (p.startsWith("/app")) return p === "/app" ? "dashboard" : null; // tables/terminal stay clean
   if (p.startsWith("/challenges") || p.startsWith("/how-it-works")) return "challenges";
   if (p.startsWith("/payouts") || p.startsWith("/payout-request") || p.startsWith("/refer")) return "payouts";
   if (p.startsWith("/our-traders") || p.startsWith("/stories") || p.startsWith("/leaderboard") || p.startsWith("/league")) return "traders";

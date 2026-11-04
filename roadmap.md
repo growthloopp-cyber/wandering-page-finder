@@ -30,5 +30,7 @@
 - [ ] Certificate verification page with ID search + certificate preview cards
 - [ ] Monthly leaderboard page: top 3 podium, previous month, search/filters
 - [ ] Support page; page-specific hero compositions for About, Contact, Rules, FAQ, Blog
-- [ ] Trader dashboard: terminal, trade book, positions, orders, evaluation, risk, calendar, KYC, funded account, notifications, support (demo UI)
+- [x] Trader dashboard: terminal, trade book, positions, orders, evaluation, risk, calendar, KYC, funded account, notifications, support (sample-data UI)
+- [x] Home: comparison table replaced by auto-scrolling Our Traders videos
+- [ ] Connect dashboard screens to real trading data (blocked: needs backend/trading feed; user asked for frontend only)
 - [ ] Admin: stats dashboard, user/challenge/product/accounts/trading/payment/payout/KYC management screens, reviews & stories management (demo UI)
