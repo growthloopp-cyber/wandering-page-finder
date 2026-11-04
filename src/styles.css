@@ -927,7 +927,7 @@ input, textarea, select { color-scheme: dark; }
 .trader-marquee-wrap:hover .trader-marquee, .trader-marquee-wrap:focus-within .trader-marquee { animation-play-state: paused; }
 .trader-card { width: 300px; flex-shrink: 0; background: var(--home-panel); border: 1px solid var(--home-line); border-radius: 18px; overflow: hidden; transition: border-color .2s, transform .2s; }
 .trader-card:hover { border-color: var(--accent); transform: translateY(-3px); }
-.trader-card-media { position: relative; display: block; width: 100%; aspect-ratio: 4/3; background: var(--surface); overflow: hidden; cursor: pointer; border: 0; padding: 0; }
+.trader-card-media { position: relative; display: block; width: 100%; aspect-ratio: 16/10; background: var(--surface); overflow: hidden; cursor: pointer; border: 0; padding: 0; }
 .trader-card-media img, .trader-card-media video { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
 .trader-card:hover .trader-card-media img { transform: scale(1.04); }
 .trader-card-fallback { display: grid; place-items: center; width: 100%; height: 100%; color: var(--muted-2); }
