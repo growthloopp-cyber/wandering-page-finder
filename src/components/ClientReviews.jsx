@@ -49,7 +49,7 @@ function StatTile() {
   );
 }
 
-export default function ClientReviews({ quotesOnly = false, heading }) {
+export default function ClientReviews({ quotesOnly = false, heading = "" }) {
   const { settings } = useSettings();
   const cfg = settings.video_reviews || {};
   const videos = quotesOnly ? [] : (cfg.items || []).filter(item => item.enabled !== false && getReviewMedia(item.url || ""));
