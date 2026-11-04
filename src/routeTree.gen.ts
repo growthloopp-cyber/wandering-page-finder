@@ -62,6 +62,7 @@ import { Route as AppSettingsRouteImport } from './routes/app.settings'
 import { Route as SiteBlogIndexRouteImport } from './routes/_site.blog.index'
 import { Route as SiteBlogSlugRouteImport } from './routes/_site.blog.$slug'
 import { Route as SiteCheckoutSuccessRouteImport } from './routes/_site.checkout.success'
+import { Route as SiteVerifyCodeRouteImport } from './routes/_site.verify.$code'
 
 const SiteRoute = SiteRouteImport.update({
   id: '/_site',
@@ -327,6 +328,11 @@ const SiteCheckoutSuccessRoute = SiteCheckoutSuccessRouteImport.update({
   path: '/checkout/success',
   getParentRoute: () => SiteRoute,
 } as any)
+const SiteVerifyCodeRoute = SiteVerifyCodeRouteImport.update({
+  id: '/verify/$code',
+  path: '/verify/$code',
+  getParentRoute: () => SiteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof SiteIndexRoute
@@ -380,6 +386,7 @@ export interface FileRoutesByFullPath {
   '/app/': typeof AppIndexRoute
   '/blog/$slug': typeof SiteBlogSlugRoute
   '/checkout/success': typeof SiteCheckoutSuccessRoute
+  '/verify/$code': typeof SiteVerifyCodeRoute
   '/blog/': typeof SiteBlogIndexRoute
 }
 export interface FileRoutesByTo {
@@ -432,6 +439,7 @@ export interface FileRoutesByTo {
   '/app': typeof AppIndexRoute
   '/blog/$slug': typeof SiteBlogSlugRoute
   '/checkout/success': typeof SiteCheckoutSuccessRoute
+  '/verify/$code': typeof SiteVerifyCodeRoute
   '/blog': typeof SiteBlogIndexRoute
 }
 export interface FileRoutesById {
@@ -488,6 +496,7 @@ export interface FileRoutesById {
   '/app/': typeof AppIndexRoute
   '/_site/blog/$slug': typeof SiteBlogSlugRoute
   '/_site/checkout/success': typeof SiteCheckoutSuccessRoute
+  '/_site/verify/$code': typeof SiteVerifyCodeRoute
   '/_site/blog/': typeof SiteBlogIndexRoute
 }
 export interface FileRouteTypes {
@@ -544,6 +553,7 @@ export interface FileRouteTypes {
     | '/app/'
     | '/blog/$slug'
     | '/checkout/success'
+    | '/verify/$code'
     | '/blog/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -596,6 +606,7 @@ export interface FileRouteTypes {
     | '/app'
     | '/blog/$slug'
     | '/checkout/success'
+    | '/verify/$code'
     | '/blog'
   id:
     | '__root__'
@@ -651,6 +662,7 @@ export interface FileRouteTypes {
     | '/app/'
     | '/_site/blog/$slug'
     | '/_site/checkout/success'
+    | '/_site/verify/$code'
     | '/_site/blog/'
   fileRoutesById: FileRoutesById
 }
@@ -1034,6 +1046,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SiteCheckoutSuccessRouteImport
       parentRoute: typeof SiteRoute
     }
+    '/_site/verify/$code': {
+      id: '/_site/verify/$code'
+      path: '/verify/$code'
+      fullPath: '/verify/$code'
+      preLoaderRoute: typeof SiteVerifyCodeRouteImport
+      parentRoute: typeof SiteRoute
+    }
   }
 }
 
@@ -1065,6 +1084,7 @@ interface SiteRouteChildren {
   SiteIndexRoute: typeof SiteIndexRoute
   SiteBlogSlugRoute: typeof SiteBlogSlugRoute
   SiteCheckoutSuccessRoute: typeof SiteCheckoutSuccessRoute
+  SiteVerifyCodeRoute: typeof SiteVerifyCodeRoute
   SiteBlogIndexRoute: typeof SiteBlogIndexRoute
 }
 
@@ -1096,6 +1116,7 @@ const SiteRouteChildren: SiteRouteChildren = {
   SiteIndexRoute: SiteIndexRoute,
   SiteBlogSlugRoute: SiteBlogSlugRoute,
   SiteCheckoutSuccessRoute: SiteCheckoutSuccessRoute,
+  SiteVerifyCodeRoute: SiteVerifyCodeRoute,
   SiteBlogIndexRoute: SiteBlogIndexRoute,
 }
 
