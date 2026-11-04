@@ -23,7 +23,7 @@ function TraderCard({ item, onOpen, decorative }) {
       <button type="button" className="trader-card-media" onClick={() => onOpen(item)} tabIndex={decorative ? -1 : 0}
         aria-label={`Play ${item.name || "trader"}'s story`}>
         {thumb ? <img src={thumb} alt="" loading="lazy" />
-          : media.kind === "video" ? <video src={media.url} muted playsInline preload="metadata" />
+          : media.kind === "video" ? <video src={media.url} muted playsInline autoPlay loop preload="metadata" />
           : <span className="trader-card-fallback"><Video /></span>}
         <span className="trader-card-source">{media.kind === "youtube" ? <Youtube size={14} /> : <Video size={14} />}{source}{item.views ? ` • ${item.views}` : ""}</span>
         <span className="trader-card-play"><Play fill="currentColor" size={18} /></span>
