@@ -8,7 +8,9 @@ import { Label } from "../../components/ui/label";
 import { Textarea } from "../../components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../components/ui/tabs";
 import { useSettings, DEFAULT_SETTINGS } from "../../context/SettingsContext";
-import { Plus, Trash2, Save, RotateCcw, Megaphone, User, Mail, Home as HomeIcon, ListChecks, MessageSquare, HelpCircle, BookOpen, Info } from "lucide-react";
+import { QRCodeSVG } from "qrcode.react";
+import { utrLast4 } from "../../lib/trust";
+import { Plus, Trash2, Save, RotateCcw, Megaphone, User, Mail, Home as HomeIcon, ListChecks, MessageSquare, HelpCircle, BookOpen, Info, ShieldCheck } from "lucide-react";
 
 const inputCls = "bg-[var(--bg-1)] border-[var(--border-hi)] mt-2";
 
@@ -60,6 +62,7 @@ export default function AdminSettings() {
           <T v="benefits" icon={<HomeIcon size={14}/>}>Benefits</T>
           <T v="payouts" icon={<HomeIcon size={14}/>}>Payouts</T>
           <T v="homepage" icon={<HomeIcon size={14}/>}>Homepage</T>
+          <T v="trust" icon={<ShieldCheck size={14}/>}>Trust</T>
           <T v="videos" icon={<MessageSquare size={14}/>}>Review Videos</T>
           <T v="testi" icon={<MessageSquare size={14}/>}>Testimonials</T>
           <T v="faq" icon={<HelpCircle size={14}/>}>FAQ</T>
@@ -316,7 +319,7 @@ export default function AdminSettings() {
 
         <TabsContent value="homepage">
           <Section title="Homepage sections">
-            <div className="grid sm:grid-cols-2 gap-4">{Object.entries({ plans: "Challenge plans", payouts: "Payout certificates & weekly payouts", reviews: "Client reviews", steps: "How it works", benefits: "Trading experience", calculator: "Profit calculator", community: "Community", blogs: "Latest articles", faq: "Frequently asked questions", support: "Support" }).map(([key, label]) => <label key={key} className="flex gap-3 items-center"><input type="checkbox" checked={s.home_sections?.[key] !== false} onChange={e => set(`home_sections.${key}`, e.target.checked)} />{label}</label>)}</div>
+            <div className="grid sm:grid-cols-2 gap-4">{Object.entries({ plans: "Challenge plans", payouts: "Our Traders & weekly payouts", trust: "Trust & Transparency", reviews: "Client reviews", steps: "How it works", benefits: "Trading experience", calculator: "Profit calculator", community: "Community", blogs: "Latest articles", faq: "Frequently asked questions", support: "Support" }).map(([key, label]) => <label key={key} className="flex gap-3 items-center"><input type="checkbox" checked={s.home_sections?.[key] !== false} onChange={e => set(`home_sections.${key}`, e.target.checked)} />{label}</label>)}</div>
           </Section>
         </TabsContent>
         <TabsContent value="videos">
@@ -405,6 +408,66 @@ export default function AdminSettings() {
               )}
             />
           </Section>
+        </TabsContent>
+
+        <TabsContent value="trust">
+          <Section title="Trust & Transparency section">
+            <label className="flex items-center gap-3"><input type="checkbox" checked={s.trust?.enabled !== false} onChange={e => set("trust.enabled", e.target.checked)} />Show Trust section</label>
+            <Grid2><F label="Heading"><Input value={s.trust?.heading || ""} onChange={e => set("trust.heading", e.target.value)} className={inputCls} /></F><F label="Subtitle"><Input value={s.trust?.subtitle || ""} onChange={e => set("trust.subtitle", e.target.value)} className={inputCls} /></F></Grid2>
+          </Section>
+          <Section title="Statistics (shown with count-up animation)">
+            <ListEditor items={s.trust?.stats || []} onChange={v => set("trust.stats", v)} empty={{ label: "", value: "" }} addLabel="Add statistic" render={(it, upd) => (
+              <Grid2><F label="Label"><Input value={it.label} onChange={e => upd({ ...it, label: e.target.value })} className={inputCls} placeholder="Total Amount Paid" /></F><F label="Value"><Input value={it.value} onChange={e => upd({ ...it, value: e.target.value })} className={inputCls} placeholder="₹12,50,000" /></F></Grid2>
+            )} />
+          </Section>
+          <Section title="Company details">
+            <Grid2>
+              {[["legal_name","Legal name"],["gst","GST number"],["cin","CIN"],["pan","PAN"],["tan","TAN"],["phone","Contact number"],["email","Support email"],["instagram","Instagram URL"],["telegram","Telegram URL"]].map(([k, l]) => <F key={k} label={l}><Input value={s.trust?.company?.[k] || ""} onChange={e => set(`trust.company.${k}`, e.target.value)} className={inputCls} /></F>)}
+            </Grid2>
+            <F label="Physical office address"><Textarea rows={2} value={s.trust?.company?.address || ""} onChange={e => set("trust.company.address", e.target.value)} className={inputCls} /></F>
+          </Section>
+          <Section title="Registration documents">
+            <ListEditor items={s.trust?.documents || []} onChange={v => set("trust.documents", v)} empty={{ name: "", url: "", enabled: true }} addLabel="Add document" render={(it, upd) => <>
+              <Grid2><F label="Document name"><Input value={it.name} onChange={e => upd({ ...it, name: e.target.value })} className={inputCls} placeholder="Certificate of Incorporation" /></F><F label="Public HTTPS link (optional)"><Input value={it.url} onChange={e => upd({ ...it, url: e.target.value })} className={inputCls} placeholder="https://..." /></F></Grid2>
+              <label className="flex gap-3 items-center"><input type="checkbox" checked={it.enabled !== false} onChange={e => upd({ ...it, enabled: e.target.checked })} />Show on site</label>
+            </>} />
+          </Section>
+          <Section title="Support team">
+            <ListEditor items={s.trust?.support_team || []} onChange={v => set("trust.support_team", v)} empty={{ name: "", role: "", contact: "" }} addLabel="Add team member" render={(it, upd) => (
+              <Grid2><F label="Name"><Input value={it.name} onChange={e => upd({ ...it, name: e.target.value })} className={inputCls} /></F><F label="Role"><Input value={it.role} onChange={e => upd({ ...it, role: e.target.value })} className={inputCls} placeholder="Payout desk" /></F><F label="Contact (optional)"><Input value={it.contact} onChange={e => upd({ ...it, contact: e.target.value })} className={inputCls} /></F></Grid2>
+            )} />
+          </Section>
+          <Section title="Payout proofs (public — only last 4 UTR digits are stored)">
+            <ListEditor items={s.trust?.payout_proofs || []} onChange={v => set("trust.payout_proofs", v)} empty={{ payout_id: "", trader_id: "", account_id: "", amount: "", request_date: "", payment_date: "", method: "Bank transfer", utr_last4: "", enabled: true }} addLabel="Add payout proof" render={(it, upd) => <>
+              <Grid2>
+                {[["payout_id","Payout ID"],["trader_id","Trader ID"],["account_id","Account ID"],["amount","Amount (₹)"],["request_date","Request date"],["payment_date","Payment date"],["method","Payment method"]].map(([k, l]) => <F key={k} label={l}><Input value={it[k] || ""} onChange={e => upd({ ...it, [k]: e.target.value })} className={inputCls} type={k.endsWith("date") ? "date" : "text"} /></F>)}
+                <F label="UTR — last 4 digits"><Input value={it.utr_last4 || ""} onChange={e => upd({ ...it, utr_last4: utrLast4(e.target.value) })} className={inputCls} placeholder="1234" maxLength={20} /></F>
+              </Grid2>
+              <label className="flex gap-3 items-center"><input type="checkbox" checked={it.enabled !== false} onChange={e => upd({ ...it, enabled: e.target.checked })} />Publish & allow verification</label>
+            </>} />
+          </Section>
+          <Section title="Certificates & awards (QR verification)">
+            <ListEditor items={s.trust?.credentials || []} onChange={v => set("trust.credentials", v)} empty={{ code: "", type: "certificate", trader_name: "", title: "", amount: "", issued_date: "", enabled: true }} addLabel="Add certificate / award" render={(it, upd) => <>
+              <Grid2>
+                <F label="Unique code"><Input value={it.code} onChange={e => upd({ ...it, code: e.target.value.replace(/[^A-Za-z0-9-]/g, "").toUpperCase() })} className={inputCls} placeholder="IF-CERT-0001" /></F>
+                <F label="Type"><select value={it.type} onChange={e => upd({ ...it, type: e.target.value })} className={`flex h-10 w-full rounded-md border px-3 text-sm ${inputCls}`}><option value="certificate">Certificate</option><option value="award">Award</option></select></F>
+                <F label="Trader name"><Input value={it.trader_name} onChange={e => upd({ ...it, trader_name: e.target.value })} className={inputCls} /></F>
+                <F label="Title"><Input value={it.title} onChange={e => upd({ ...it, title: e.target.value })} className={inputCls} placeholder="Funded Trader — ₹5L" /></F>
+                <F label="Amount (optional)"><Input value={it.amount} onChange={e => upd({ ...it, amount: e.target.value })} className={inputCls} /></F>
+                <F label="Issued date"><Input type="date" value={it.issued_date} onChange={e => upd({ ...it, issued_date: e.target.value })} className={inputCls} /></F>
+              </Grid2>
+              <label className="flex gap-3 items-center"><input type="checkbox" checked={it.enabled !== false} onChange={e => upd({ ...it, enabled: e.target.checked })} />Published</label>
+              {it.code && <div className="flex items-center gap-4"><div className="trust-qr"><QRCodeSVG value={`${window.location.origin}/verify/${encodeURIComponent(it.code)}`} size={96} /></div><a href={`/verify/${encodeURIComponent(it.code)}`} target="_blank" rel="noreferrer" className="text-sm text-[var(--accent)] hover:underline">Open verification page</a></div>}
+            </>} />
+          </Section>
+          <Section title="Trader success stories">
+            <ListEditor items={s.trust?.stories || []} onChange={v => set("trust.stories", v)} empty={{ name: "", city: "", plan: "", payout: "", story: "", enabled: true }} addLabel="Add story" render={(it, upd) => <>
+              <Grid2>{[["name","Trader name"],["city","City"],["plan","Plan"],["payout","Payout withdrawn (₹)"]].map(([k, l]) => <F key={k} label={l}><Input value={it[k] || ""} onChange={e => upd({ ...it, [k]: e.target.value })} className={inputCls} /></F>)}</Grid2>
+              <F label="Story"><Textarea rows={3} value={it.story} onChange={e => upd({ ...it, story: e.target.value })} className={inputCls} /></F>
+              <label className="flex gap-3 items-center"><input type="checkbox" checked={it.enabled !== false} onChange={e => upd({ ...it, enabled: e.target.checked })} />Published</label>
+            </>} />
+          </Section>
+          <p className="text-sm text-[var(--muted)]">Payout videos are managed in the Review Videos tab.</p>
         </TabsContent>
 
         <TabsContent value="about">

@@ -8,6 +8,7 @@ import ChallengePicker from "../components/ChallengePicker";
 import ClientReviews from "../components/ClientReviews";
 import OurTraders from "../components/OurTraders";
 import WeeklyHighestPayout from "../components/WeeklyHighestPayout";
+import TrustSection from "../components/TrustSection";
 import ProfitCalculator from "../components/ProfitCalculator";
 import { HeroFX, Ticker } from "../components/HeroFX";
 import { useReveal } from "../lib/useReveal";
@@ -54,6 +55,7 @@ export default function Home() {
       <ChallengePicker plans={plans} href={href} />
     </>}
     {show("payouts") && <div className="home-proof-band"><OurTraders /><WeeklyHighestPayout /></div>}
+    {show("trust") && <TrustSection />}
     {show("reviews") && <ClientReviews quotesOnly />}
     <ScrollStatement text="Traders return to a system that is clear, fair, and built for Indian markets." />
     {show("steps") && <section data-reveal className="home-band"><div className="container-xl">

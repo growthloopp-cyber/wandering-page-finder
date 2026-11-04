@@ -7,7 +7,7 @@
 - [x] "Our Traders" video cards (FTMO-style horizontal auto-scroll) replace certificates on home + /our-traders page
 - [x] Platform page like indifunded.com/virtual-trading (/virtual-trading)
 - [x] AI performance insights from pasted/uploaded trading history (trader dashboard)
-- [ ] Admin account admin@indifunded.com (blocked: chosen password rejected by leaked-password check; owner must pick a stronger one)
+- [x] Admin account admin@indifunded.com created; sign-in fixed; home flicker + slow page switches fixed
 - [ ] Real "Our Traders" videos (blocked: owner will send links; add in Admin → Site Settings → Review Videos)
 - [ ] Public: Compare Plans page, Platform Demo, Support Center, per-challenge detail pages
 - [ ] Trader: evaluation progress, trading terminal, positions, tradebook, KYC flow, fund account
@@ -15,3 +15,6 @@
 - [ ] Extra FundedNext-inspired sections
 - [ ] Records + users import (blocked: owner exports old data)
 - [ ] Payments: Razorpay (blocked: user keys)
+- [x] Trust & Transparency: stats, company details, documents, support team, payout proofs (UTR last 4), Payout ID verification, certificate/award QR pages, stories, admin Trust tab
+- [ ] Real company details (GST, CIN, PAN, TAN, Telegram, documents) (blocked: owner fills in Admin → Site Settings → Trust)
+- [ ] Virtual trading page redesign from reference videos (blocked: owner will send videos)
