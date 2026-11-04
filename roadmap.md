@@ -18,3 +18,5 @@
 - [x] Trust & Transparency: stats, company details, documents, support team, payout proofs (UTR last 4), Payout ID verification, certificate/award QR pages, stories, admin Trust tab
 - [ ] Real company details (GST, CIN, PAN, TAN, Telegram, documents) (blocked: owner fills in Admin → Site Settings → Trust)
 - [ ] Virtual trading page redesign from reference videos (blocked: owner will send videos)
+- [x] Sign-up: clear error messages, password checklist, auto sign-in after account creation
+- [x] Unique lazy-loaded 3D visual per page type + card hover depth (kept green brand, not purple)

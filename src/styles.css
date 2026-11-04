@@ -1084,7 +1084,7 @@ input, textarea, select { color-scheme: dark; }
 .showcase-content { position: relative; z-index: 1; }
 .showcase-3d { position: absolute; top: 0; right: -20px; width: min(40vw, 480px); height: 330px; z-index: 0; pointer-events: none; opacity: 0; transition: opacity 1.2s ease; }
 .showcase-3d.is-ready { opacity: .95; }
-.showcase-3d--home { top: -30px; height: 300px; width: min(40vw, 460px); }
+.showcase-3d--home { top: 20px; height: 280px; width: min(40vw, 460px); }
 .showcase-3d--default { opacity: 0; }
 .showcase-3d--default.is-ready { opacity: .55; }
 .has-showcase--panel .showcase-3d { width: 300px; height: 260px; top: 0; right: 0; }

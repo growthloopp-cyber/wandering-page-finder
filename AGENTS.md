@@ -20,3 +20,4 @@
 - AI calls go through `@lovable.dev/ai-gateway` in server-only modules under `src/server/` (e.g. `insights.ts`), dynamically imported by the API handler; prompts and keys never reach the browser.
 - "Our Traders" video cards reuse the site-settings `video_reviews` items (extra fields: country, flag, rewards, style, views); the home page shows quotes-only reviews to avoid showing the same videos twice.
 - Trust & Transparency content (stats, company IDs, documents, support team, payout proofs, certificate/award QR codes, stories) lives in the site-settings `trust` block; it is public, so payout proofs store only the UTR's last 4 characters (`src/lib/trust.js`).
+- Page 3D visuals come from one lazy `Showcase3D` slot (three.js loads only in the browser after idle, pauses off-screen, hidden for reduced motion); `src/lib/scene-for-path.js` maps each page to its own procedural scene so models don't repeat.
