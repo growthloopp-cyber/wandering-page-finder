@@ -11,6 +11,7 @@
 - [ ] Real "Our Traders" videos (blocked: owner will send links; add in Admin → Site Settings → Review Videos)
 - [ ] Public: Compare Plans page, Platform Demo, Support Center, per-challenge detail pages
 - [ ] Trader: evaluation progress, trading terminal, positions, tradebook, KYC flow, fund account
+- [ ] Persist trader terminal orders, positions, and KYC details/documents in Lovable Cloud (requested 2026-11-16)
 - [ ] Admin: KYC review, CRM, CMS, reports, audit logs, trading data
 - [ ] Extra FundedNext-inspired sections
 - [ ] Records + users import (blocked: owner exports old data)
@@ -32,5 +33,5 @@
 - [ ] Support page; page-specific hero compositions for About, Contact, Rules, FAQ, Blog
 - [x] Trader dashboard: terminal, trade book, positions, orders, evaluation, risk, calendar, KYC, funded account, notifications, support (sample-data UI)
 - [x] Home: comparison table replaced by auto-scrolling Our Traders videos
-- [ ] Connect dashboard screens to real trading data (blocked: needs backend/trading feed; user asked for frontend only)
+- [ ] Connect dashboard screens to a live broker/trading feed (separate from persistent simulated orders)
 - [ ] Admin: stats dashboard, user/challenge/product/accounts/trading/payment/payout/KYC management screens, reviews & stories management (demo UI)
